@@ -28,13 +28,13 @@ export function Navbar() {
           : "py-5 bg-[#FFF8F0]"
       }`}
     >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <div className="hidden md:flex items-center gap-7">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 flex items-center justify-end">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <button
               key={link}
               onClick={() => scrollTo(link.toLowerCase())}
-              className="text-[#1A1A1A]/70 hover:text-primary transition-colors text-xs font-medium tracking-wide uppercase"
+              className="text-[#1A1A1A]/65 hover:text-primary transition-colors text-sm font-medium tracking-wide"
             >
               {link}
             </button>
