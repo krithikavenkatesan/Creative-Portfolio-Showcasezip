@@ -29,13 +29,6 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <div
-          className="text-xl font-serif font-bold text-primary cursor-pointer tracking-tight"
-          onClick={() => scrollTo("home")}
-        >
-          Krithika
-        </div>
-
         <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <button

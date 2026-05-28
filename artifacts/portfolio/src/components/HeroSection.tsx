@@ -40,13 +40,13 @@ export function HeroSection() {
             </motion.p>
 
             <motion.div variants={item} className="mb-6">
-              <h1 className="text-5xl md:text-7xl font-serif font-bold text-[#1A1A1A] leading-[1.05] tracking-tight">
+              <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#1A1A1A] leading-[1.1] tracking-tight">
                 Data Analyst.
               </h1>
-              <h1 className="text-5xl md:text-7xl font-serif font-bold text-primary leading-[1.05] tracking-tight">
+              <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary leading-[1.1] tracking-tight">
                 Storytelling.
               </h1>
-              <h1 className="text-5xl md:text-7xl font-serif font-bold text-primary leading-[1.05] tracking-tight">
+              <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary leading-[1.1] tracking-tight">
                 &amp; Product Thinking.
               </h1>
             </motion.div>

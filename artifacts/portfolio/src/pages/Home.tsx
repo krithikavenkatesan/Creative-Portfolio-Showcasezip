@@ -1,5 +1,8 @@
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
+import { AboutSection } from "@/components/AboutSection";
+import { ExperienceSection } from "@/components/ExperienceSection";
+import { BlogsSection } from "@/components/BlogsSection";
 import { ContactFooter } from "@/components/ContactFooter";
 
 export default function Home() {
@@ -7,11 +10,10 @@ export default function Home() {
     <main className="min-h-screen bg-background w-full selection:bg-primary selection:text-white">
       <Navbar />
       <HeroSection />
-      {/* We are only building Hero and Footer for now, but leaving space for future sections */}
-      <div id="about" className="min-h-[10vh]"></div>
+      <AboutSection />
       <div id="projects" className="min-h-[10vh]"></div>
-      <div id="experience" className="min-h-[10vh]"></div>
-      <div id="blogs" className="min-h-[10vh]"></div>
+      <ExperienceSection />
+      <BlogsSection />
       <ContactFooter />
     </main>
   );
