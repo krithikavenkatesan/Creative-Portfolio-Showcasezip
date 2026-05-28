@@ -4,6 +4,7 @@ import { X, ExternalLink, Github } from "lucide-react";
 import abTestingImg from "@assets/ab_testing_preview_1779950998044.png";
 import subsImg from "@assets/subs_preview_1779950998043.png";
 import ecomImg from "@assets/ecom_preview_1779950998042.png";
+import momChartImg from "@assets/image_1779986416128.png";
 
 type Project = {
   id: string;
@@ -199,6 +200,19 @@ const projects: Project[] = [
             </ul>
           ),
         },
+        {
+          label: "Month Over Month Analysis",
+          content: (
+            <div>
+              <p className="text-[#6B6B6B] text-sm mb-4 leading-[1.7]">Revenue growth peaked in 2020–2021 before declining in 2022 — this chart shows product-level monthly revenue trends across the full four-year window.</p>
+              <img
+                src={momChartImg}
+                alt="Month Over Month Revenue Analysis"
+                className="w-full rounded-xl border border-[#F0E8E0] shadow-sm"
+              />
+            </div>
+          ),
+        },
       ]
     }
   }
@@ -306,7 +320,7 @@ export function ProjectsSection() {
                         target="_blank"
                         rel="noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="flex-1 flex items-center justify-center gap-1.5 bg-primary text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-primary/90 transition-colors"
+                        className="flex-1 flex items-center justify-center gap-1.5 text-white text-xs font-bold px-4 py-2.5 rounded-full btn-gradient"
                       >
                         View Dashboard
                         <ExternalLink className="w-3.5 h-3.5" />
@@ -317,7 +331,7 @@ export function ProjectsSection() {
                       target="_blank"
                       rel="noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className={`flex items-center justify-center gap-1.5 border border-primary text-primary text-xs font-bold px-4 py-2.5 rounded-full hover:bg-primary/5 transition-colors ${!project.dashboardUrl ? 'flex-1' : ''}`}
+                      className={`flex items-center justify-center gap-1.5 text-xs font-bold px-4 py-2.5 rounded-full btn-gradient-outline ${!project.dashboardUrl ? 'flex-1' : ''}`}
                     >
                       GitHub
                       <ExternalLink className="w-3.5 h-3.5" />
@@ -406,7 +420,7 @@ export function ProjectsSection() {
                     href={selectedProject.dashboardUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 bg-primary text-white text-sm font-bold px-6 py-3.5 rounded-full hover:bg-primary/90 transition-colors shadow-sm hover:shadow-md"
+                    className="flex-1 flex items-center justify-center gap-2 text-white text-sm font-bold px-6 py-3.5 rounded-full btn-gradient shadow-sm"
                   >
                     View Dashboard
                     <ExternalLink className="w-4 h-4" />
@@ -416,7 +430,7 @@ export function ProjectsSection() {
                   href={selectedProject.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className={`flex items-center justify-center gap-2 border-2 border-primary text-primary text-sm font-bold px-6 py-3.5 rounded-full hover:bg-primary/5 transition-colors ${!selectedProject.dashboardUrl ? 'sm:w-auto sm:px-12' : 'flex-1'}`}
+                  className={`flex items-center justify-center gap-2 text-sm font-bold px-6 py-3.5 rounded-full btn-gradient-outline ${!selectedProject.dashboardUrl ? 'sm:w-auto sm:px-12' : 'flex-1'}`}
                 >
                   View on GitHub
                   <Github className="w-4 h-4" />

@@ -50,34 +50,50 @@ export function ExperienceSection() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-serif font-bold text-[#1A1A1A] mb-16"
+            className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] mb-16"
           >
             Where I've Worked
           </motion.h2>
 
           <div className="max-w-3xl">
-            <div className="relative border-l-2 border-primary ml-3 space-y-14">
+            <div
+              className="relative ml-3 space-y-14"
+              style={{
+                borderLeft: "2px solid transparent",
+                borderImage: "linear-gradient(180deg, #E8457A, #FF6B35) 1",
+              }}
+            >
               {experiences.map((exp, index) => (
                 <motion.div key={index} variants={itemVariants} className="relative pl-10">
-                  {/* Dot */}
-                  <div className="absolute w-3 h-3 bg-primary rounded-full -left-[7px] top-1.5 ring-4 ring-[#FFF8F0]" />
+                  {/* Gradient dot */}
+                  <div
+                    className="absolute w-3 h-3 rounded-full -left-[7px] top-1.5 ring-4 ring-[#FFF8F0]"
+                    style={{ background: "linear-gradient(135deg, #E8457A, #FF6B35)" }}
+                  />
 
                   <div className="flex flex-col mb-5">
-                    <span className="text-xs font-medium uppercase tracking-widest text-primary mb-2">
+                    <span
+                      className="text-xs font-bold uppercase tracking-widest mb-2 text-gradient-accent"
+                      style={{ fontWeight: 700 }}
+                    >
                       {exp.date}
                     </span>
-                    <h3 className="text-2xl font-serif font-bold text-[#1A1A1A]">
+                    <h3 className="text-2xl font-extrabold text-[#1A1A1A]">
                       {exp.role}
                     </h3>
-                    <span className="italic text-[#6B6B6B] mt-1 text-sm">
+                    <span className="italic text-[#6B6B6B] mt-1 text-sm font-medium">
                       {exp.company}
                     </span>
                   </div>
 
                   <ul className="space-y-3">
                     {exp.bullets.map((bullet, bIndex) => (
-                      <li key={bIndex} className="flex items-start text-[#1A1A1A] font-sans text-[0.95rem] leading-relaxed">
-                        <span className="text-primary font-bold mr-3 mt-[2px] shrink-0">→</span>
+                      <li key={bIndex} className="flex items-start text-[#1A1A1A] text-[0.95rem] leading-[1.7]">
+                        <span
+                          className="font-bold mr-3 mt-[2px] shrink-0 text-gradient-accent"
+                        >
+                          →
+                        </span>
                         <span>{bullet}</span>
                       </li>
                     ))}

@@ -49,15 +49,15 @@ export function BlogsSection() {
           <div className="mb-14">
             <motion.h2
               variants={cardVariants}
-              className="text-4xl md:text-5xl font-serif font-bold text-[#1A1A1A] mb-4"
+              className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] mb-4"
             >
               Analytics Playbooks
             </motion.h2>
             <motion.p
               variants={cardVariants}
-              className="text-[#6B6B6B] text-base font-sans max-w-xl"
+              className="text-[#6B6B6B] text-base max-w-xl leading-[1.7]"
             >
-              Writing & thinking out loud on data, products, and everything in between.
+              Writing and thinking out loud on data, products, and everything in between.
             </motion.p>
           </div>
 
@@ -71,19 +71,23 @@ export function BlogsSection() {
                 variants={cardVariants}
                 className="group flex flex-col bg-white rounded-2xl p-7 shadow-sm border border-[#F0E8E0] hover:shadow-md transition-all duration-300 hover:-translate-y-1"
               >
-                {/* Red Medium pill — matches reference */}
-                <div className="inline-block px-3 py-1 mb-5 text-xs font-semibold text-white bg-primary rounded-full self-start">
+                <div
+                  className="inline-block px-3 py-1 mb-5 text-xs font-bold text-white rounded-full self-start"
+                  style={{ background: "linear-gradient(90deg, #E8457A, #FF6B35)" }}
+                >
                   Medium
                 </div>
-                <h3 className="text-[1.05rem] font-serif font-bold text-[#1A1A1A] mb-3 leading-snug group-hover:text-primary transition-colors">
+                <h3 className="text-[1.05rem] font-bold text-[#1A1A1A] mb-3 leading-snug group-hover:text-gradient-accent transition-colors">
                   {blog.title}
                 </h3>
-                <p className="text-[#6B6B6B] font-sans text-sm mb-6 leading-relaxed flex-1">
+                <p className="text-[#6B6B6B] text-sm mb-6 leading-[1.7] flex-1">
                   {blog.description}
                 </p>
-                <div className="flex items-center text-primary text-sm font-semibold">
+                <div
+                  className="flex items-center text-sm font-semibold text-gradient-accent"
+                >
                   Read on Medium
-                  <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" style={{ color: "#FF6B35" }} />
                 </div>
               </motion.a>
             ))}

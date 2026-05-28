@@ -23,62 +23,56 @@ export function ContactFooter() {
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
   };
 
+  const socialLinks = [
+    { href: "https://github.com/krithikavenkatesannn", icon: <SiGithub className="w-7 h-7" />, label: "GitHub" },
+    { href: "https://www.linkedin.com/in/krithika-venkatesann/", icon: <FaLinkedinIn className="w-7 h-7" />, label: "LinkedIn" },
+    { href: "https://medium.com/@krithikavenkatesannn", icon: <SiMedium className="w-7 h-7" />, label: "Medium" },
+    { href: "mailto:krithikaa.venkatesan@gmail.com", icon: <Mail className="w-7 h-7" />, label: "Email" },
+  ];
+
   return (
     <footer id="contact" className="bg-[#1A1A1A] py-24 md:py-32" ref={ref}>
       <div className="container mx-auto px-6 md:px-12">
-        <motion.div 
+        <motion.div
           className="max-w-4xl mx-auto text-center"
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
         >
-          <motion.h2 variants={item} className="text-5xl md:text-7xl font-serif font-bold text-[#FFF8F0] mb-6">
+          <motion.h2
+            variants={item}
+            className="text-5xl md:text-7xl font-extrabold text-[#FFF8F0] mb-6"
+          >
             Let's Connect
           </motion.h2>
-          
-          <motion.p variants={item} className="text-xl text-[#FFF8F0]/70 mb-12">
+
+          <motion.p variants={item} className="text-xl text-[#FFF8F0]/70 mb-12 font-medium leading-[1.7]">
             Open to roles, projects, and good conversations.
           </motion.p>
-          
+
           <motion.div variants={item} className="flex justify-center items-center gap-6 md:gap-8 mb-20">
-            <a 
-              href="https://github.com/" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="w-16 h-16 rounded-full bg-[#FFF8F0]/10 flex items-center justify-center text-[#FFF8F0] hover:bg-primary hover:scale-110 transition-all duration-300"
-            >
-              <SiGithub className="w-8 h-8" />
-              <span className="sr-only">GitHub</span>
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/krithika-venkatesann/" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="w-16 h-16 rounded-full bg-[#FFF8F0]/10 flex items-center justify-center text-[#FFF8F0] hover:bg-primary hover:scale-110 transition-all duration-300"
-            >
-              <FaLinkedinIn className="w-8 h-8" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
-            <a 
-              href="https://medium.com/@krithikavenkatesannn" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="w-16 h-16 rounded-full bg-[#FFF8F0]/10 flex items-center justify-center text-[#FFF8F0] hover:bg-primary hover:scale-110 transition-all duration-300"
-            >
-              <SiMedium className="w-8 h-8" />
-              <span className="sr-only">Medium</span>
-            </a>
-            <a 
-              href="mailto:krithikaa.venkatesan@gmail.com" 
-              className="w-16 h-16 rounded-full bg-[#FFF8F0]/10 flex items-center justify-center text-[#FFF8F0] hover:bg-primary hover:scale-110 transition-all duration-300"
-            >
-              <Mail className="w-8 h-8" />
-              <span className="sr-only">Email</span>
-            </a>
+            {socialLinks.map(({ href, icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("mailto") ? undefined : "_blank"}
+                rel="noreferrer"
+                className="w-16 h-16 rounded-full bg-[#FFF8F0]/10 flex items-center justify-center text-[#FFF8F0] hover:scale-110 transition-all duration-300"
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "linear-gradient(135deg, #E8457A, #FF6B35)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,248,240,0.1)";
+                }}
+              >
+                {icon}
+                <span className="sr-only">{label}</span>
+              </a>
+            ))}
           </motion.div>
-          
+
           <motion.div variants={item} className="border-t border-[#FFF8F0]/10 pt-8">
-            <p className="text-[#FFF8F0]/50 text-sm">
+            <p className="text-[#FFF8F0]/50 text-sm font-medium">
               © 2026 Krithika Venkatesan
             </p>
           </motion.div>

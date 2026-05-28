@@ -34,7 +34,22 @@ export function Navbar() {
             <button
               key={link}
               onClick={() => scrollTo(link.toLowerCase())}
-              className="text-[#1A1A1A]/65 hover:text-primary transition-colors text-sm font-medium tracking-wide"
+              className="text-[#1A1A1A]/65 text-sm font-semibold tracking-wide transition-all duration-200 hover:text-gradient-accent"
+              style={{ fontWeight: 500 }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget;
+                el.style.background = "linear-gradient(90deg, #E8457A, #FF6B35)";
+                el.style.webkitBackgroundClip = "text";
+                el.style.webkitTextFillColor = "transparent";
+                el.style.backgroundClip = "text";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget;
+                el.style.background = "";
+                el.style.webkitBackgroundClip = "";
+                el.style.webkitTextFillColor = "";
+                el.style.backgroundClip = "";
+              }}
             >
               {link}
             </button>

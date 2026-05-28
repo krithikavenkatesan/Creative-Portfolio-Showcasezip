@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { FloatingShapes } from "./FloatingShapes";
 import resumeUrl from "@assets/KrithikaVenkatesan_Resume_1779947361301.pdf";
 import photoUrl from "@assets/WhatsApp_Image_2026-05-27_at_20.38.22_1779947524537.jpeg";
-import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   const container = {
@@ -23,7 +22,7 @@ export function HeroSection() {
       <FloatingShapes />
 
       <div className="max-w-6xl mx-auto w-full px-6 md:px-10">
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 lg:gap-16">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 md:gap-10">
 
           {/* LEFT — text */}
           <motion.div
@@ -32,61 +31,53 @@ export function HeroSection() {
             initial="hidden"
             animate="show"
           >
-            <motion.p variants={item} className="text-base font-medium text-[#6B6B6B] mb-3 tracking-wide">
+            <motion.p
+              variants={item}
+              className="text-[14px] font-medium text-[#6B6B6B] mb-3 tracking-wide"
+            >
               Hi, I'm Krithika.
             </motion.p>
 
             <motion.div variants={item} className="mb-7">
-              {/* Data Analyst — BIG */}
-              <h1 className="text-6xl md:text-7xl font-serif font-bold text-[#1A1A1A] leading-[1.05] tracking-tight">
-                Data Analyst.
+              <h1 className="text-6xl md:text-7xl font-extrabold text-[#1A1A1A] leading-[1.05] tracking-tight">
+                Data Analyst
               </h1>
-              {/* Storytelling + Product Thinking — medium */}
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary leading-[1.2] tracking-tight mt-1">
-                Storytelling.
-              </h2>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary leading-[1.2] tracking-tight">
-                &amp; Product Thinking.
+              <h2
+                className="text-3xl md:text-4xl font-extrabold leading-[1.2] tracking-tight mt-2 whitespace-nowrap text-gradient-accent"
+              >
+                Storytelling &amp; Product Thinking.
               </h2>
             </motion.div>
 
             <motion.div variants={item} className="flex flex-wrap items-center gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="text-sm h-12 px-7 rounded-full bg-primary hover:bg-primary/90 text-white"
+              <a
+                href={resumeUrl}
+                download="KrithikaVenkatesan_Resume.pdf"
+                className="inline-flex items-center justify-center text-sm font-bold h-12 px-7 rounded-full btn-gradient"
               >
-                <a href={resumeUrl} download="KrithikaVenkatesan_Resume.pdf">
-                  Download Resume
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="text-sm h-12 px-7 rounded-full border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FFF8F0]"
+                Download Resume
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="inline-flex items-center justify-center text-sm font-bold h-12 px-7 rounded-full btn-gradient-outline"
               >
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  Say Hi
-                </a>
-              </Button>
+                Say Hi
+              </a>
             </motion.div>
           </motion.div>
 
-          {/* RIGHT — photo (untouched) */}
+          {/* RIGHT — photo */}
           <motion.div
-            className="flex-1 flex justify-center items-center z-10 w-full"
+            className="flex-shrink-0 flex justify-center items-center z-10"
             initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring", stiffness: 180, damping: 20, delay: 0.25 }}
           >
-            <div className="relative w-72 h-80 md:w-80 md:h-96">
+            <div className="relative w-80 h-96 md:w-[360px] md:h-[430px]">
               <motion.div
                 animate={{ scale: [1, 1.04, 1], rotate: [0, 3, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
