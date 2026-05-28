@@ -1,0 +1,135 @@
+now projects that i have built
+This is how it should look like but make sure the cover is good minimalistic maybe i will give an eg cover for all
+A/B Testing — Food Ordering Conversion Lift
+Measured how social-proof badges changed conversion behaviour across 88K+ users over 14 days.
+→ Conversion 20.17% → 20.86%
+→ AOV ₹322 → ₹346
+→ Novelty decay identified
+View Case Study →
+28K
+subscribers
+Retained 68%
+Churned 22%
+Trial 10%
+Subscription Retention · 28K Users
+Excel
+Python
+Power BI
+Subscription & Churn Analysis
+Tracked where retention collapsed and revenue leakage accelerated across 28K subscribers.
+→ Paid subscribers dropped 32%
+→ NRR fell below 100%
+→ M11 retention: 60% → 42%
+View Case Study →
+E-commerce · $28M Revenue
+2019
+2020
+2021
+2022
+Peak: 2020
+Excel
+SQL
+Power BI
+E-commerce Product Performance Analysis
+Uncovered revenue concentration risk and seasonal slowdown patterns across 108K global orders.
+→ $28M revenue · 108K orders
+→ 85% revenue from 3 products
+→ Loyalty: 11% → 55%
+View Case Study →
+then 
+inside if i click if should open
+
+
+Business Context
+A food delivery platform was facing low order conversion due to decision fatigue caused by too many restaurant and menu choices. To improve customer decision-making, the product team introduced social-proof badges such as “Popular” and “Most Ordered” and ran a 14-day A/B experiment across 88K+ users.
+Objective
+The goal was to measure whether social-proof badges could increase order conversion and customer spending without negatively affecting cancellation rates or overall order quality.
+Analysis & Metrics
+
+* Validated balanced traffic allocation between control and treatment groups before analysis
+* Evaluated key product metrics:
+   * Conversion Rate → percentage of users placing orders
+   * Average Order Value (AOV) → average spend per order
+   * Cancellation Rate → percentage of cancelled orders after placement
+   * Time-to-Order → average time users took to complete an order
+   * Menu Exploration → number of menu interactions before ordering
+* Compared treatment performance across:
+   * New vs returning users
+   * Daily experiment trends over the 14-day period
+* Built an executive Power BI dashboard to communicate experiment performance and business impact clearly to stakeholders
+Key Findings
+
+* Conversion rate improved from 20.17% to 20.86%, showing that social-proof badges helped more users complete purchases
+* Average order value increased from ₹322 to ₹346, indicating users spent more when exposed to popularity signals
+* Users completed purchases faster, reducing average decision time from 13 minutes to 12 minutes
+* Cancellation rates increased slightly but remained within acceptable levels, suggesting the additional orders were still high quality
+* New users responded more positively than returning users, showing social proof was especially effective for reducing uncertainty among first-time buyers
+* The treatment group explored more menus while still converting faster, suggesting improved confidence rather than rushed decision-making
+Business Impact
+The experiment generated an estimated ₹432K incremental revenue within 14 days, with projected monthly impact crossing ₹925K after full rollout.
+A major insight from the analysis was the identification of novelty decay — the conversion uplift reduced significantly from Week 1 to Week 2, indicating the badge’s effectiveness weakened over time as users became familiar with it.
+Recommendation
+Recommended a phased rollout of social-proof badges with continued monitoring of long-term conversion trends. Also suggested testing alternative badge variations and prioritising exposure for new users, where the impact was strongest.Problem Statement
+A subscription-based streaming platform with 28K+ paid users was experiencing declining retention and slowing revenue growth despite steady increases in ARPU. The business needed to identify why Net Revenue Retention (NRR) had fallen below 100%, which customer segments were driving churn, and where subscription leakage was occurring across the lifecycle.
+Approach
+
+* Analyzed subscription, churn, trial, and migration trends across 2023–2024 user cohorts
+* Built cohort retention and survival analysis to track new-user retention across M1, M6, and M11 lifecycle stages
+* Evaluated key subscription metrics including:
+   * Net Revenue Retention (NRR)
+   * Monthly Recurring Revenue (MRR)
+   * ARPU and Lifetime Value (LTV)
+   * Trial-to-paid conversion
+   * Upgrade vs downgrade migration trends
+* Performed plan-level segmentation to compare churn, revenue contribution, and retention across Basic, Premium, Duo, Student, and Annual plans
+* Built migration matrices to identify revenue leakage from downgrades and weak expansion behavior
+* Created an interactive Power BI dashboard covering subscription growth, retention, plan economics, and churn behaviour
+Key Insights
+
+* Paid subscribers declined from 28K → 19K (-32%), while NRR dropped below 100%, confirming structural contraction rather than seasonal slowdown
+* ARPU increased steadily from $18 → $21, proving pricing was not the core issue — retention was
+* Revenue lost due to churn increased from $212K → $298K (+40%), while new MRR remained nearly flat
+* Trial-to-paid conversion weakened from 7.2% → 6.0%, showing the acquisition funnel was deteriorating over time
+* Early churn improved significantly (26% → 6%), but mid-lifecycle retention collapsed, with M11 retention falling from 60% → 42%
+* Premium and Basic plans generated most revenue but also contributed the highest churn-related revenue leakage
+* Annual plan had the strongest retention and lowest churn (1.08%), yet represented only a small share of new user acquisition
+* Upgrade rates dropped sharply while downgrade migration increased, revealing weakening expansion revenue
+Business Recommendations
+
+* Prioritize Annual and Duo plans in acquisition campaigns due to higher LTV and lower churn
+* Launch lifecycle engagement campaigns targeting users between Month 3–6 where retention decline was strongest
+* Improve Premium plan differentiation with additional features and win-back campaigns to reduce downgrade behaviour
+* Increase Annual plan adoption through discounted yearly bundles and exclusive features
+* Introduce a “Premium Lite” tier to reduce downgrade migration toward lower-value plans
+* Set automated NRR monitoring alerts and cohort retention tracking as core business KPIsProblem Statement
+An electronics e-commerce platform processing 108K+ global orders wanted to understand why revenue growth slowed after the pandemic boom despite stable order volumes. The business needed visibility into changing customer behavior, refund risks, loyalty performance, and product concentration dependency to improve long-term commercial performance.
+Approach
+   * Analyzed transactional, refund, loyalty, and acquisition channel data from 2019–2022 across global markets
+   * Evaluated core business metrics including:
+      * Revenue growth trends
+      * Average Order Value (AOV)
+      * Refund rates
+      * Loyalty revenue contribution
+      * Product and channel performance
+   * Performed year-over-year and seasonal trend analysis to identify demand shifts before and after the pandemic growth period
+   * Conducted product-level revenue and refund analysis to identify high-risk, high-value categories
+   * Compared acquisition channels and platform performance across Website, Mobile App, Direct, Email, and Affiliate traffic
+   * Built interactive Power BI dashboards visualising revenue drivers, refund behavior, seasonality, and customer loyalty insights
+Key Insights
+   * Generated $28M revenue across 108K orders with an average order value of $260
+   * Revenue peaked during 2020 pandemic demand and declined steadily through 2022, indicating structural normalization rather than temporary fluctuation
+   * Three products — Gaming Monitor, AirPods, and MacBook Air — contributed 85% of total revenue, creating major SKU concentration risk
+   * Laptop categories showed disproportionately high refund rates, with ThinkPad and MacBook Air exceeding 11% refunds vs ~5% company average
+   * Loyalty contribution increased significantly from 11% → 55% of total revenue, proving repeat customers became a major growth driver
+   * Website generated 97% of total revenue, while the Mobile App contributed only ~3% with significantly lower AOV
+   * Seasonal demand consistently peaked between September–December, while February–June remained a recurring slowdown period
+   * 2022 refund values dropped to zero, revealing likely missing or incomplete operational data rather than genuine refund improvement
+Business Recommendations
+   * Prioritize inventory and marketing spend around high-performing products during Q4 seasonal peaks
+   * Reduce refund-related losses in laptop categories through improved product descriptions, compatibility guidance, and post-purchase support
+   * Expand loyalty incentives and tiered rewards to strengthen repeat purchase behaviour and predictable revenue
+   * Improve Mobile App experience and conversion strategy due to extremely low revenue contribution and weak AOV performance
+   * Create promotional campaigns during off-peak months to reduce seasonal revenue slowdown
+   * Validate and fix incomplete refund reporting before operational decision-making
+* 
+use simple eng and then please make sure heading highlight then points then make it proper https://github.com/krithikavenkatesannn/ab-testing-social-proof-food-deliveryhttps://github.com/krithikavenkatesannn/subscription-retention-churn-analysishttps://github.com/krithikavenkatesannn/E-commerce-Performance-Analysis for replitc prompt

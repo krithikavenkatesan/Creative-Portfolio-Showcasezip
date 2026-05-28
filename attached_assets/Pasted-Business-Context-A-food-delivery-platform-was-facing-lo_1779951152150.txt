@@ -1,0 +1,36 @@
+Business Context
+
+A food delivery platform was facing low order conversion due to decision fatigue caused by too many restaurant and menu choices. To improve customer decision-making, the product team introduced social-proof badges such as “Popular” and “Most Ordered” and ran a 14-day A/B experiment across 88K+ users.
+
+Objective
+
+The goal was to measure whether social-proof badges could increase order conversion and customer spending without negatively affecting cancellation rates or overall order quality.
+
+Analysis & Metrics
+Validated balanced traffic allocation between control and treatment groups before analysis
+Evaluated key product metrics:
+Conversion Rate → percentage of users placing orders
+Average Order Value (AOV) → average spend per order
+Cancellation Rate → percentage of cancelled orders after placement
+Time-to-Order → average time users took to complete an order
+Menu Exploration → number of menu interactions before ordering
+Compared treatment performance across:
+New vs returning users
+Daily experiment trends over the 14-day period
+Built an executive Power BI dashboard to communicate experiment performance and business impact clearly to stakeholders
+Key Findings
+Conversion rate improved from 20.17% to 20.86%, showing that social-proof badges helped more users complete purchases
+Average order value increased from ₹322 to ₹346, indicating users spent more when exposed to popularity signals
+Users completed purchases faster, reducing average decision time from 13 minutes to 12 minutes
+Cancellation rates increased slightly but remained within acceptable levels, suggesting the additional orders were still high quality
+New users responded more positively than returning users, showing social proof was especially effective for reducing uncertainty among first-time buyers
+The treatment group explored more menus while still converting faster, suggesting improved confidence rather than rushed decision-making
+Business Impact
+
+The experiment generated an estimated ₹432K incremental revenue within 14 days, with projected monthly impact crossing ₹925K after full rollout.
+
+A major insight from the analysis was the identification of novelty decay — the conversion uplift reduced significantly from Week 1 to Week 2, indicating the badge’s effectiveness weakened over time as users became familiar with it.
+
+Recommendation
+
+Recommended a phased rollout of social-proof badges with continued monitoring of long-term conversion trends. Also suggested testing alternative badge variations and prioritising exposure for new users, where the impact was strongest.

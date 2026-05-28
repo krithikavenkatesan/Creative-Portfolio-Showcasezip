@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
+import { ProjectsSection } from "@/components/ProjectsSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { BlogsSection } from "@/components/BlogsSection";
 import { ContactFooter } from "@/components/ContactFooter";
@@ -11,7 +12,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <AboutSection />
-      <div id="projects" className="min-h-[10vh]"></div>
+      <ProjectsSection />
       <ExperienceSection />
       <BlogsSection />
       <ContactFooter />
