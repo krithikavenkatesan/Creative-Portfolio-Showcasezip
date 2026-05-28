@@ -40,7 +40,7 @@ export function ExperienceSection() {
   };
 
   return (
-    <section id="experience" className="py-24 md:py-32 bg-[#FFF8F0]">
+    <section id="experience" className="py-14 md:py-20 bg-[#FFF8F0]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <motion.div
           ref={ref}

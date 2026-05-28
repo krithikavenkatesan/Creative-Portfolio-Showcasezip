@@ -254,7 +254,7 @@ export function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-[#FFF8F0] scroll-mt-20">
+    <section id="projects" className="py-14 md:py-20 bg-[#FFF8F0] scroll-mt-20">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <motion.div
           ref={sectionRef}

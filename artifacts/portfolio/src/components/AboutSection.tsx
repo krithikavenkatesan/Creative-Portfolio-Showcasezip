@@ -7,7 +7,7 @@ export function AboutSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-[#FFF8F0] overflow-hidden" ref={ref}>
+    <section id="about" className="py-14 md:py-20 bg-[#FFF8F0] overflow-hidden" ref={ref}>
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
 
@@ -43,15 +43,12 @@ export function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
           >
-            <span className="text-xs font-medium uppercase tracking-[0.2em] text-[#6B6B6B] mb-3">
-              About Me
-            </span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#1A1A1A] mb-8">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] mb-8">
               A bit about myself.
             </h2>
-            <div className="text-[#1A1A1A] font-sans text-base md:text-[1.1rem] leading-[1.85] space-y-5">
+            <div className="text-[#1A1A1A] text-base md:text-[1.1rem] leading-[1.7] space-y-5">
               <p>
-                I'm an engineering graduate who loves breaking complex things into simple ideas and turning them into storytelling and yapping about my insights for hours. I genuinely enjoy analysing how users think, behave, and interact, understanding decisions beyond just surface-level observations. I also write and publish analytics-related content for fun.
+                Hi, I'm Krithika, an engineering graduate who loves breaking complex things into simple ideas and turning them into storytelling and yapping about my insights for hours. I genuinely enjoy analysing how users think, behave, and interact, understanding decisions beyond just surface-level observations. I also write and publish analytics-related content for fun.
               </p>
               <p>
                 Over the past year I've worked on real-world projects and with NGOs, helping teams make better decisions for their organizations. I've also pitched my own startup idea and made it to the finalist stage, honestly one of my proudest achievements so far.

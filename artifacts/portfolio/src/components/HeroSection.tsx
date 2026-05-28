@@ -33,7 +33,7 @@ export function HeroSection() {
           >
             <motion.p
               variants={item}
-              className="text-[14px] font-medium text-[#6B6B6B] mb-3 tracking-wide"
+              className="text-[18px] font-semibold text-[#6B6B6B] mb-3 tracking-wide"
             >
               Hi, I'm Krithika.
             </motion.p>

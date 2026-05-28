@@ -31,7 +31,7 @@ export function ContactFooter() {
   ];
 
   return (
-    <footer id="contact" className="bg-[#1A1A1A] py-24 md:py-32" ref={ref}>
+    <footer id="contact" className="bg-[#1A1A1A] py-16 md:py-24" ref={ref}>
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           className="max-w-4xl mx-auto text-center"
