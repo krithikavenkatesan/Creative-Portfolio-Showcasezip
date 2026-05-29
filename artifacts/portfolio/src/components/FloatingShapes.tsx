@@ -1,256 +1,189 @@
 import { motion } from "framer-motion";
 
-const spring = (delay = 0, duration = 1.8) => ({
-  type: "spring" as const,
-  stiffness: 120,
-  damping: 8,
-  repeat: Infinity,
-  repeatType: "mirror" as const,
-  delay,
-  duration,
+const float = (y1: number, y2: number, delay = 0, dur = 4) => ({
+  animate: { y: [y1, y2, y1] },
+  transition: { duration: dur, repeat: Infinity, ease: "easeInOut" as const, delay },
 });
+
+const sway = (r1: number, r2: number, delay = 0, dur = 5) => ({
+  animate: { rotate: [r1, r2, r1] },
+  transition: { duration: dur, repeat: Infinity, ease: "easeInOut" as const, delay },
+});
+
+const PINK = "#E8457A";
+const ORANGE = "#FF6B35";
 
 export function FloatingShapes() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
 
-      {/* ═══ TOP-LEFT CLUSTER ═══════════════════════════════ */}
+      {/* ── DASHED CIRCLE — upper far left ─── */}
+      <motion.svg
+        {...float(-8, 10, 0, 4.5)}
+        className="absolute top-[12%] left-[3%]"
+        width="58" height="58" viewBox="0 0 58 58"
+      >
+        <circle cx="29" cy="29" r="25" fill="none" stroke={PINK}
+          strokeWidth="2" strokeDasharray="5 4" opacity="0.7"/>
+      </motion.svg>
 
-      {/* Bouncy filled circle — top left */}
+      {/* ── STAR — left, below nav ─────────── */}
+      <motion.svg
+        {...float(-10, 8, 0.5, 5)}
+        {...sway(-7, 7, 0.5, 5)}
+        className="absolute top-[17%] left-[19%]"
+        width="42" height="42" viewBox="0 0 50 50"
+      >
+        <polygon
+          points="25,4 30,18 45,18 33,28 37,43 25,34 13,43 17,28 5,18 20,18"
+          fill="none" stroke={PINK} strokeWidth="2" strokeLinejoin="round" opacity="0.65"/>
+      </motion.svg>
+
+      {/* tiny dot beside star */}
       <motion.div
-        animate={{ y: [-12, 12], x: [-6, 6] }}
-        transition={spring(0, 2)}
-        className="absolute top-[15%] left-[4%] w-7 h-7 rounded-full"
-        style={{ background: "linear-gradient(135deg, #E8457A55, #FF6B3555)" }}
+        {...float(-4, 5, 0.9, 3.5)}
+        className="absolute top-[24%] left-[29%] w-3 h-3 rounded-full"
+        style={{ background: PINK, opacity: 0.6 }}
       />
 
-      {/* Small outline circle — left mid */}
-      <motion.div
-        animate={{ y: [10, -14] }}
-        transition={spring(0.4, 1.6)}
-        className="absolute top-[38%] left-[5%] w-14 h-14 rounded-full"
-        style={{ border: "2px solid #E8457A25" }}
-      />
+      {/* ── PENCIL — above/left of text ────── */}
+      <motion.svg
+        {...float(-7, 9, 0.2, 4.2)}
+        {...sway(-6, 6, 0.2, 4.2)}
+        className="absolute top-[26%] left-[9%]"
+        width="26" height="40" viewBox="0 0 26 40"
+      >
+        <rect x="5" y="2" width="16" height="26" rx="3" fill="none"
+          stroke={ORANGE} strokeWidth="2" opacity="0.65"/>
+        <polygon points="5,28 21,28 13,37" fill="none"
+          stroke={ORANGE} strokeWidth="2" strokeLinejoin="round" opacity="0.65"/>
+        <line x1="5" y1="11" x2="21" y2="11" stroke={ORANGE} strokeWidth="1.6" opacity="0.55"/>
+      </motion.svg>
 
-      {/* Tiny solid dot */}
-      <motion.div
-        animate={{ y: [-8, 10], x: [4, -4] }}
-        transition={spring(1.2, 1.4)}
-        className="absolute top-[60%] left-[7%] w-3 h-3 rounded-full"
-        style={{ background: "#FF6B3560" }}
-      />
+      {/* ── MAGNIFYING GLASS — top center-left  */}
+      <motion.svg
+        {...float(-8, 9, 1.3, 5.5)}
+        {...sway(-8, 8, 1.3, 5.5)}
+        className="absolute top-[7%] left-[36%]"
+        width="44" height="44" viewBox="0 0 44 44"
+      >
+        <circle cx="18" cy="18" r="13" fill="none" stroke={PINK} strokeWidth="2" opacity="0.65"/>
+        <line x1="28" y1="28" x2="42" y2="42" stroke={PINK} strokeWidth="2.5"
+          strokeLinecap="round" opacity="0.65"/>
+      </motion.svg>
 
-      {/* Large faint circle outline — bottom left */}
-      <motion.div
-        animate={{ scale: [1, 1.06, 1], y: [0, 8, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-[5%] left-[2%] w-44 h-44 rounded-full"
-        style={{ border: "1px solid #E8457A15" }}
-      />
+      {/* ── GLASSES — left mid ─────────────── */}
+      <motion.svg
+        {...float(-9, 8, 1, 4.8)}
+        className="absolute top-[44%] left-[4%]"
+        width="68" height="32" viewBox="0 0 68 32"
+      >
+        <circle cx="16" cy="16" r="13" fill="none" stroke={PINK} strokeWidth="2" opacity="0.6"/>
+        <circle cx="52" cy="16" r="13" fill="none" stroke={PINK} strokeWidth="2" opacity="0.6"/>
+        <line x1="29" y1="16" x2="39" y2="16" stroke={PINK} strokeWidth="2" opacity="0.6"/>
+        <line x1="3" y1="9" x2="0" y2="5" stroke={PINK} strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+        <line x1="65" y1="9" x2="68" y2="5" stroke={PINK} strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+      </motion.svg>
 
-      {/* ═══ TOP-CENTER CLUSTER ══════════════════════════════ */}
+      {/* ── LIGHTNING BOLT — mid left ──────── */}
+      <motion.svg
+        {...float(-11, 7, 0.4, 4.2)}
+        {...sway(-5, 5, 0.4, 4.2)}
+        className="absolute top-[54%] left-[25%]"
+        width="28" height="42" viewBox="0 0 28 42"
+      >
+        <path d="M17 2L4 22H14L11 40L26 18H16L17 2Z"
+          fill="none" stroke={ORANGE} strokeWidth="2"
+          strokeLinejoin="round" strokeLinecap="round" opacity="0.65"/>
+      </motion.svg>
 
-      {/* Dashed spinning ring */}
+      {/* ── TRENDING ARROW — lower left ────── */}
+      <motion.svg
+        {...float(-7, 8, 1.9, 4.6)}
+        className="absolute top-[70%] left-[7%]"
+        width="52" height="34" viewBox="0 0 52 34"
+      >
+        <polyline points="2,30 16,16 28,22 50,4"
+          fill="none" stroke={PINK} strokeWidth="2"
+          strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
+        <polyline points="40,2 50,4 48,14"
+          fill="none" stroke={PINK} strokeWidth="2"
+          strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
+      </motion.svg>
+
+      {/* ── OUTLINE CIRCLE — bottom left ───── */}
+      <motion.svg
+        {...float(-7, 7, 1.7, 5.2)}
+        className="absolute bottom-[18%] left-[2%]"
+        width="46" height="46" viewBox="0 0 46 46"
+      >
+        <circle cx="23" cy="23" r="20" fill="none" stroke={ORANGE} strokeWidth="2" opacity="0.55"/>
+      </motion.svg>
+
+      {/* ── DATA POINT CIRCLE — lower center── */}
+      <motion.svg
+        {...float(-6, 7, 0.8, 3.8)}
+        className="absolute top-[80%] left-[33%]"
+        width="32" height="32" viewBox="0 0 32 32"
+      >
+        <circle cx="16" cy="16" r="12" fill="none" stroke={PINK} strokeWidth="2" opacity="0.65"/>
+        <circle cx="16" cy="16" r="3" fill={PINK} opacity="0.55"/>
+      </motion.svg>
+
+      {/* ── MINI BAR CHART — center-left ───── */}
+      <motion.svg
+        {...float(-8, 7, 1.1, 4.4)}
+        className="absolute top-[60%] left-[40%]"
+        width="38" height="32" viewBox="0 0 38 32"
+      >
+        <rect x="0"  y="18" width="7" height="14" rx="2" fill={PINK} opacity="0.45"/>
+        <rect x="10" y="9"  width="7" height="23" rx="2" fill={ORANGE} opacity="0.45"/>
+        <rect x="20" y="13" width="7" height="19" rx="2" fill={PINK} opacity="0.4"/>
+        <rect x="30" y="4"  width="7" height="28" rx="2" fill={ORANGE} opacity="0.4"/>
+      </motion.svg>
+
+      {/* ── WAVY TREND LINE — bottom ─────────*/}
+      <motion.svg
+        animate={{ x: [0, 8, 0], opacity: [0.5, 0.72, 0.5] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        className="absolute bottom-[11%] left-[15%]"
+        width="95" height="28" viewBox="0 0 95 28"
+      >
+        <path d="M0 20 Q14 4 28 16 Q42 26 56 13 Q70 2 84 14 Q90 17 95 12"
+          stroke="url(#wG)" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+        <defs>
+          <linearGradient id="wG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor={PINK}/>
+            <stop offset="100%" stopColor={ORANGE}/>
+          </linearGradient>
+        </defs>
+      </motion.svg>
+
+      {/* ── SPINNING DASHED RING — top center ─*/}
       <motion.div
         animate={{ rotate: [0, 360] }}
         transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[6%] left-[46%] rounded-full"
-        style={{ width: 80, height: 80, border: "1.5px dashed #E8457A22" }}
+        className="absolute top-[5%] left-[50%] rounded-full"
+        style={{ width: 72, height: 72, border: `2px dashed ${PINK}`, opacity: 0.3 }}
       />
 
-      {/* Tilted ribbon */}
+      {/* ── SCATTERED DOTS ────────────────── */}
+      <motion.div {...float(-5, 7, 2.4, 3.2)}
+        className="absolute top-[35%] left-[3%] w-3.5 h-3.5 rounded-full"
+        style={{ background: ORANGE, opacity: 0.5 }}/>
+      <motion.div {...float(5, -5, 2.8, 2.8)}
+        className="absolute top-[39%] left-[7.5%] w-2 h-2 rounded-full"
+        style={{ background: PINK, opacity: 0.45 }}/>
+      <motion.div {...float(-4, 5, 1.6, 3.2)}
+        className="absolute top-[21%] left-[44%] w-2.5 h-2.5 rounded-full"
+        style={{ background: ORANGE, opacity: 0.5 }}/>
+
+      {/* ── LARGE FAINT CIRCLE — bottom left ─*/}
       <motion.div
-        animate={{ y: [-10, 10], rotate: [10, 22] }}
-        transition={spring(0.6, 2)}
-        className="absolute top-[12%] left-[38%] w-20 h-3 rounded-full"
-        style={{ background: "linear-gradient(90deg, #E8457A20, #FF6B3520)" }}
-      />
-
-      {/* Sparkle star — top center-right */}
-      <motion.svg
-        animate={{ rotate: [0, 18, -12, 0], scale: [1, 1.2, 1] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-        className="absolute top-[22%] left-[44%]"
-        width="20" height="20" viewBox="0 0 24 24"
-      >
-        <path d="M12 2L13.4 9.6L21 12L13.4 14.4L12 22L10.6 14.4L3 12L10.6 9.6L12 2Z" fill="url(#s1)" fillOpacity="0.32"/>
-        <defs>
-          <linearGradient id="s1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#E8457A"/>
-            <stop offset="100%" stopColor="#FF6B35"/>
-          </linearGradient>
-        </defs>
-      </motion.svg>
-
-      {/* ═══ LEFT-MID SHAPES ═════════════════════════════════ */}
-
-      {/* Triangle outline — bouncy */}
-      <motion.svg
-        animate={{ y: [-14, 10], rotate: [-5, 8] }}
-        transition={spring(0.3, 2.2)}
-        className="absolute top-[28%] left-[16%]"
-        width="26" height="24" viewBox="0 0 26 24"
-      >
-        <polygon points="13,2 25,22 1,22" fill="none" stroke="url(#t1)" strokeWidth="1.8" strokeLinejoin="round" opacity="0.4"/>
-        <defs>
-          <linearGradient id="t1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#E8457A"/>
-            <stop offset="100%" stopColor="#FF6B35"/>
-          </linearGradient>
-        </defs>
-      </motion.svg>
-
-      {/* Filled small square rotated */}
-      <motion.svg
-        animate={{ y: [8, -10], rotate: [15, 40] }}
-        transition={spring(1.5, 1.8)}
-        className="absolute top-[46%] left-[13%]"
-        width="16" height="16" viewBox="0 0 16 16"
-      >
-        <rect x="1" y="1" width="14" height="14" rx="2" fill="url(#sq1)" opacity="0.2"/>
-        <defs>
-          <linearGradient id="sq1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#E8457A"/>
-            <stop offset="100%" stopColor="#FF6B35"/>
-          </linearGradient>
-        </defs>
-      </motion.svg>
-
-      {/* Outline box — mid left */}
-      <motion.svg
-        animate={{ y: [-10, 12], rotate: [0, -18] }}
-        transition={spring(0.9, 2)}
-        className="absolute top-[64%] left-[20%]"
-        width="22" height="22" viewBox="0 0 22 22"
-      >
-        <rect x="1" y="1" width="20" height="20" rx="3" fill="none" stroke="#FF6B35" strokeWidth="1.4" opacity="0.28"/>
-      </motion.svg>
-
-      {/* ═══ RIGHT SIDE SHAPES ═══════════════════════════════ */}
-
-      {/* Large outline circle — upper right (behind photo) */}
-      <motion.div
-        animate={{ scale: [1, 1.04, 1], rotate: [0, 5, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="absolute top-[8%] right-[4%] w-28 h-28 rounded-full"
-        style={{ border: "1.5px solid #E8457A18" }}
-      />
-
-      {/* Bouncy triangle — right */}
-      <motion.svg
-        animate={{ y: [10, -12], rotate: [-8, 6] }}
-        transition={spring(0.7, 2)}
-        className="absolute top-[38%] right-[8%]"
-        width="20" height="18" viewBox="0 0 20 18"
-      >
-        <polygon points="10,1 19,17 1,17" fill="url(#t2)" opacity="0.22"/>
-        <defs>
-          <linearGradient id="t2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#FF6B35"/>
-            <stop offset="100%" stopColor="#E8457A"/>
-          </linearGradient>
-        </defs>
-      </motion.svg>
-
-      {/* Sparkle — right mid */}
-      <motion.svg
-        animate={{ rotate: [0, -20, 10, 0], scale: [1, 1.18, 1] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute top-[55%] right-[12%]"
-        width="18" height="18" viewBox="0 0 24 24"
-      >
-        <path d="M12 2L13.4 9.6L21 12L13.4 14.4L12 22L10.6 14.4L3 12L10.6 9.6L12 2Z" fill="url(#s2)" fillOpacity="0.3"/>
-        <defs>
-          <linearGradient id="s2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#FF6B35"/>
-            <stop offset="100%" stopColor="#E8457A"/>
-          </linearGradient>
-        </defs>
-      </motion.svg>
-
-      {/* Outline square — right lower */}
-      <motion.svg
-        animate={{ y: [-8, 10], rotate: [20, 38] }}
-        transition={spring(1.1, 1.9)}
-        className="absolute bottom-[30%] right-[6%]"
-        width="20" height="20" viewBox="0 0 20 20"
-      >
-        <rect x="1" y="1" width="18" height="18" rx="3" fill="none" stroke="url(#sq2)" strokeWidth="1.5" opacity="0.3"/>
-        <defs>
-          <linearGradient id="sq2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#E8457A"/>
-            <stop offset="100%" stopColor="#FF6B35"/>
-          </linearGradient>
-        </defs>
-      </motion.svg>
-
-      {/* ═══ BOTTOM CLUSTER ══════════════════════════════════ */}
-
-      {/* Wavy line — bottom */}
-      <motion.svg
-        animate={{ x: [0, 8, 0], opacity: [0.15, 0.28, 0.15] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="absolute bottom-[18%] right-[22%]"
-        width="70" height="22" viewBox="0 0 70 22"
-      >
-        <path d="M0 11 Q12 2 24 11 Q36 20 48 11 Q60 2 70 11" stroke="url(#wave)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.38"/>
-        <defs>
-          <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#E8457A"/>
-            <stop offset="100%" stopColor="#FF6B35"/>
-          </linearGradient>
-        </defs>
-      </motion.svg>
-
-      {/* Small filled gradient circle — bottom center */}
-      <motion.div
-        animate={{ y: [-10, 10] }}
-        transition={spring(0.8, 2.2)}
-        className="absolute bottom-[12%] left-[48%] w-4 h-4 rounded-full"
-        style={{ background: "linear-gradient(135deg, #E8457A50, #FF6B3550)" }}
-      />
-
-      {/* Medium circle ring — bottom left-center */}
-      <motion.div
-        animate={{ y: [0, 10, 0], x: [0, -6, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-        className="absolute bottom-[8%] left-[30%] w-32 h-32 rounded-full"
-        style={{ border: "1px solid #F9B5AC22" }}
-      />
-
-      {/* Tiny bar chart doodle */}
-      <motion.svg
-        animate={{ y: [0, -10, 0], opacity: [0.2, 0.35, 0.2] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute top-[58%] right-[20%]"
-        width="36" height="28" viewBox="0 0 36 28"
-      >
-        <rect x="0" y="14" width="6" height="14" rx="2" fill="#E8457A" fillOpacity="0.28"/>
-        <rect x="10" y="6" width="6" height="22" rx="2" fill="#FF6B35" fillOpacity="0.28"/>
-        <rect x="20" y="10" width="6" height="18" rx="2" fill="#E8457A" fillOpacity="0.22"/>
-        <rect x="30" y="2" width="6" height="26" rx="2" fill="#FF6B35" fillOpacity="0.22"/>
-      </motion.svg>
-
-      {/* Tiny dot cluster — center-left gap */}
-      <motion.div
-        animate={{ y: [-6, 8] }}
-        transition={spring(2, 1.5)}
-        className="absolute top-[50%] left-[28%] w-2 h-2 rounded-full"
-        style={{ background: "#E8457A55" }}
-      />
-      <motion.div
-        animate={{ y: [6, -8] }}
-        transition={spring(2.3, 1.5)}
-        className="absolute top-[53%] left-[31%] w-1.5 h-1.5 rounded-full"
-        style={{ background: "#FF6B3555" }}
-      />
-
-      {/* Pill ribbon — lower left */}
-      <motion.div
-        animate={{ y: [0, -8, 0], rotate: [-6, 2, -6] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-        className="absolute top-[82%] left-[56%] w-14 h-2.5 rounded-full"
-        style={{ background: "linear-gradient(90deg, #E8457A28, #FF6B3528)" }}
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-[-4%] left-[-6%] w-56 h-56 rounded-full"
+        style={{ border: `2px solid ${PINK}`, opacity: 0.12 }}
       />
 
     </div>

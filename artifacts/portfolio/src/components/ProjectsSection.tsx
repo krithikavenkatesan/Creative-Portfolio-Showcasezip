@@ -263,12 +263,16 @@ export function ProjectsSection() {
           variants={containerVariants}
         >
           <div className="mb-14">
-            <motion.p variants={itemVariants} className="text-xs uppercase tracking-widest text-[#6B6B6B] mb-3 font-sans font-semibold">
-              Projects
-            </motion.p>
-            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-serif font-bold text-[#1A1A1A]">
-              Things I've Built
-            </motion.h2>
+            <motion.div variants={itemVariants}>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A]">
+                Things I've{" "}
+                <span className="text-gradient-accent">Built</span>
+              </h2>
+              <div
+                className="mt-3 h-1 w-16 rounded-full"
+                style={{ background: "linear-gradient(90deg, #E8457A, #FF6B35)" }}
+              />
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

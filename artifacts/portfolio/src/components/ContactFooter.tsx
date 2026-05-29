@@ -10,12 +10,7 @@ export function ContactFooter() {
 
   const container = {
     hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const item = {
@@ -39,12 +34,25 @@ export function ContactFooter() {
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
         >
-          <motion.h2
-            variants={item}
-            className="text-5xl md:text-7xl font-extrabold text-[#FFF8F0] mb-6"
-          >
-            Let's Connect
-          </motion.h2>
+          <motion.div variants={item} className="mb-6">
+            <h2 className="text-5xl md:text-7xl font-extrabold text-[#FFF8F0]">
+              Let's{" "}
+              <span
+                style={{
+                  background: "linear-gradient(90deg, #E8457A, #FF6B35)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Connect
+              </span>
+            </h2>
+            <div
+              className="mt-3 h-1 w-16 rounded-full mx-auto"
+              style={{ background: "linear-gradient(90deg, #E8457A, #FF6B35)" }}
+            />
+          </motion.div>
 
           <motion.p variants={item} className="text-xl text-[#FFF8F0]/70 mb-12 font-medium leading-[1.7]">
             Open to roles, projects, and good conversations.

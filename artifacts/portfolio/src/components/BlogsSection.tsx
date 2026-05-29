@@ -46,20 +46,19 @@ export function BlogsSection() {
           animate={isInView ? "show" : "hidden"}
           variants={containerVariants}
         >
-          <div className="mb-14">
-            <motion.h2
-              variants={cardVariants}
-              className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] mb-4"
-            >
-              Analytics Playbooks
-            </motion.h2>
-            <motion.p
-              variants={cardVariants}
-              className="text-[#6B6B6B] text-base max-w-xl leading-[1.7]"
-            >
+          <motion.div variants={cardVariants} className="mb-14">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A]">
+              Analytics{" "}
+              <span className="text-gradient-accent">Playbooks</span>
+            </h2>
+            <div
+              className="mt-3 h-1 w-16 rounded-full"
+              style={{ background: "linear-gradient(90deg, #E8457A, #FF6B35)" }}
+            />
+            <p className="text-[#6B6B6B] text-base max-w-xl leading-[1.7] mt-5">
               Writing and thinking out loud on data, products, and everything in between.
-            </motion.p>
-          </div>
+            </p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {blogs.map((blog, index) => (
@@ -77,15 +76,13 @@ export function BlogsSection() {
                 >
                   Medium
                 </div>
-                <h3 className="text-[1.05rem] font-bold text-[#1A1A1A] mb-3 leading-snug group-hover:text-gradient-accent transition-colors">
+                <h3 className="text-[1.05rem] font-bold text-[#1A1A1A] mb-3 leading-snug">
                   {blog.title}
                 </h3>
                 <p className="text-[#6B6B6B] text-sm mb-6 leading-[1.7] flex-1">
                   {blog.description}
                 </p>
-                <div
-                  className="flex items-center text-sm font-semibold text-gradient-accent"
-                >
+                <div className="flex items-center text-sm font-semibold text-gradient-accent">
                   Read on Medium
                   <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" style={{ color: "#FF6B35" }} />
                 </div>
