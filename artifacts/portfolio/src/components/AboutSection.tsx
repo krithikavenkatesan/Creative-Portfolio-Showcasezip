@@ -19,10 +19,12 @@ export function AboutSection() {
             transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
           >
             <div className="relative w-72 h-[400px] md:w-[340px] md:h-[460px]">
-              {/* Pink accent shape behind */}
               <div
-                className="absolute inset-0 bg-[#F9B5AC]/30 transform rotate-6 translate-x-4 translate-y-4"
-                style={{ borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%" }}
+                className="absolute inset-0 transform rotate-6 translate-x-4 translate-y-4"
+                style={{
+                  background: "linear-gradient(135deg, #E8457A22, #FF6B3522)",
+                  borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
+                }}
               />
               <img
                 src={photoUrl}
@@ -43,16 +45,50 @@ export function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] mb-8">
-              A bit about myself.
-            </h2>
-            <div className="text-[#1A1A1A] text-base md:text-[1.1rem] leading-[1.7] space-y-5">
+            {/* Heading with gradient underline accent */}
+            <div className="relative mb-8">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A]">
+                A bit about{" "}
+                <span className="relative inline-block">
+                  <span className="text-gradient-accent">myself.</span>
+                </span>
+              </h2>
+              {/* decorative gradient bar under heading */}
+              <div
+                className="mt-3 h-1 w-16 rounded-full"
+                style={{ background: "linear-gradient(90deg, #E8457A, #FF6B35)" }}
+              />
+            </div>
+
+            <div className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.8] space-y-5">
               <p>
-                Hi, I'm Krithika, an engineering graduate who loves breaking complex things into simple ideas and turning them into storytelling and yapping about my insights for hours. I genuinely enjoy analysing how users think, behave, and interact, understanding decisions beyond just surface-level observations. I also write and publish analytics-related content for fun.
+                Hi, I'm Krithika, an engineering graduate who loves breaking complex things into simple ideas and turning them into storytelling and yapping about my insights for hours. I analyse how users think, behave, and interact and dig into insights beyond just surface level observations. I also write and publish analytics related content for fun.
               </p>
               <p>
-                Over the past year I've worked on real-world projects and with NGOs, helping teams make better decisions for their organizations. I've also pitched my own startup idea and made it to the finalist stage, honestly one of my proudest achievements so far.
+                Over the past year I've worked on real world projects and with NGOs, helping teams make better decisions for their organizations. I've also pitched my own startup idea and made it to the finalist stage, honestly one of my proudest achievements so far.
               </p>
+            </div>
+
+            {/* Subtle stat pills */}
+            <div className="flex flex-wrap gap-3 mt-8">
+              {[
+                "Real-world projects",
+                "NGO impact work",
+                "Startup finalist",
+                "Analytics writer",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs font-bold px-4 py-2 rounded-full"
+                  style={{
+                    background: "linear-gradient(90deg, #E8457A12, #FF6B3512)",
+                    border: "1px solid #E8457A25",
+                    color: "#E8457A",
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </motion.div>
 
