@@ -8,7 +8,16 @@ function BulletText({ text }: { text: string }) {
     <>
       {parts.map((part, i) =>
         /^\d/.test(part) ? (
-          <strong key={i} className="font-bold text-[#1A1A1A]">{part}</strong>
+          <strong
+            key={i}
+            style={{
+              background: "linear-gradient(90deg, #E8457A, #FF6B35)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              fontWeight: 700,
+            }}
+          >{part}</strong>
         ) : (
           <span key={i}>{part}</span>
         )
