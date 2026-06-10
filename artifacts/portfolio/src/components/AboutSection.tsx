@@ -2,20 +2,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import photoUrl from "@assets/WhatsApp_Image_2026-05-27_at_22.26.36_1779948465791.jpeg";
 
-const highlights = [
-  {
-    label: "Startup Finalist",
-    desc: "Pitched my own startup idea and made it to the finalist stage",
-  },
-  {
-    label: "NGO Impact Work",
-    desc: "Helped Mozambikes turn 15+ years of scattered data into clear insights",
-  },
-  {
-    label: "Analytics Writer",
-    desc: "Writing and publishing data analytics content on Medium for fun",
-  },
-];
+const H = ({ children }: { children: string }) => (
+  <span style={{ color: "#E8457A", fontWeight: 700 }}>{children}</span>
+);
 
 export function AboutSection() {
   const ref = useRef(null);
@@ -71,34 +60,23 @@ export function AboutSection() {
               />
             </div>
 
-            {/* Short intro */}
-            <p className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.8] mb-8">
-              I'm Krithika — an engineering graduate who loves breaking complex things into
-              simple ideas. I dig into how users think and behave, then turn those findings
-              into stories that actually stick.
+            {/* Para 1 */}
+            <p className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.85] mb-5">
+              Hi, I'm Krithika, an engineering graduate who loves{" "}
+              <H>breaking complex things into simple ideas</H> and turning them into{" "}
+              <H>storytelling</H> and yapping about my insights for hours. I analyse how users think, behave, and interact and dig into insights beyond just surface level observations.
             </p>
 
-            {/* 3 Highlights */}
-            <div className="w-full grid grid-cols-1 gap-4 mb-8">
-              {highlights.map((h, i) => (
-                <motion.div
-                  key={h.label}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                  transition={{ delay: 0.35 + i * 0.12, type: "spring", stiffness: 260, damping: 22 }}
-                  className="flex items-start gap-4 bg-white rounded-xl px-5 py-4 border border-[#F0E8E0]"
-                >
-                  <div
-                    className="mt-1 w-2.5 h-2.5 rounded-full shrink-0"
-                    style={{ background: "linear-gradient(135deg, #E8457A, #FF6B35)" }}
-                  />
-                  <div>
-                    <p className="font-bold text-[#1A1A1A] text-sm mb-0.5">{h.label}</p>
-                    <p className="text-[#6B6B6B] text-sm leading-[1.6]">{h.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            {/* Para 2 */}
+            <p className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.85] mb-5">
+              I also <H>write and publish analytics related content</H> for fun. Over the past year I've worked on <H>real world projects</H> and with NGOs, helping teams make better decisions for their organizations.
+            </p>
+
+            {/* Para 3 */}
+            <p className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.85] mb-8">
+              I've also pitched my own <H>startup idea</H> and made it to the{" "}
+              <H>finalist stage</H>, honestly one of my proudest achievements so far.
+            </p>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-3">
