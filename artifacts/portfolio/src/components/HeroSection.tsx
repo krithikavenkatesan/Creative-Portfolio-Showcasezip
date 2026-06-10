@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FloatingShapes } from "./FloatingShapes";
-import resumeUrl from "@assets/KrithikaVenkatesan_Resume_1779947361301.pdf";
+import resumeUrl from "@assets/Krithika_Resume__._1781085563115.pdf";
 import photoUrl from "@assets/WhatsApp_Image_2026-05-27_at_20.38.22_1779947524537.jpeg";
 
 export function HeroSection() {

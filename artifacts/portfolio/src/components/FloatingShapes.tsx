@@ -14,131 +14,144 @@ const PINK = "#E8457A";
 const ORANGE = "#FF6B35";
 
 /*
-  SAFE ZONES (1280×800, text block ≈ left:8%–52%, top:38%–74%, photo from left:60%+):
-    TOP STRIP    — top 0–30%, width 0–58%  (spread left→right)
-    GAP STRIP    — left 53–62%, any height (between text col & photo)
-    BOTTOM STRIP — top 76–96%, width 0–58% (spread left→right)
+  LAYOUT (1280×800):
+  Text block  ~ left 8–52%,  top 38–74%
+  Photo blob  ~ left 60–92%, top 22–84%
+  Buttons     ~ left 8–40%,  top 65–74%
+
+  SAFE ZONES used:
+  A  Top-left strip    top  4–30%,  left  2–56%
+  B  Top-right strip   top  4–20%,  left 62–88%  (above photo)
+  C  Gap strip         top 34–70%,  left 53–60%  (between text & photo)
+  D  Bottom-left       top 76–95%,  left  2–56%
+  E  Bottom-right      top 86–96%,  left 62–82%  (below photo)
+
+  Shapes are distributed across ALL five zones so nothing clusters.
 */
 
 export function FloatingShapes() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
 
-      {/* ═══════ TOP STRIP — evenly spread 3% → 55% ═══════ */}
+      {/* ══════════ ZONE A — top-left strip ══════════ */}
 
-      {/* Dashed circle — far left top */}
+      {/* Dashed circle — far-left top */}
       <motion.svg {...float(-8, 10, 0, 4.5)}
-        className="absolute top-[7%] left-[3%]"
-        width="54" height="54" viewBox="0 0 54 54">
-        <circle cx="27" cy="27" r="23" fill="none" stroke={PINK}
-          strokeWidth="2" strokeDasharray="5 4" opacity="0.68"/>
+        className="absolute top-[6%] left-[2%]"
+        width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="none" stroke={PINK}
+          strokeWidth="2" strokeDasharray="5 4" opacity="0.65"/>
       </motion.svg>
 
-      {/* Pencil — left-center top */}
+      {/* Pencil — upper left */}
       <motion.svg {...float(-7, 9, 0.2, 4.2)} {...sway(-6, 6, 0.2, 4.2)}
-        className="absolute top-[20%] left-[13%]"
-        width="26" height="40" viewBox="0 0 26 40">
-        <rect x="5" y="2" width="16" height="26" rx="3" fill="none"
-          stroke={ORANGE} strokeWidth="2" opacity="0.63"/>
-        <polygon points="5,28 21,28 13,37" fill="none"
-          stroke={ORANGE} strokeWidth="2" strokeLinejoin="round" opacity="0.63"/>
-        <line x1="5" y1="11" x2="21" y2="11" stroke={ORANGE} strokeWidth="1.6" opacity="0.5"/>
+        className="absolute top-[20%] left-[9%]"
+        width="24" height="38" viewBox="0 0 24 38">
+        <rect x="4" y="2" width="16" height="24" rx="3" fill="none"
+          stroke={ORANGE} strokeWidth="2" opacity="0.62"/>
+        <polygon points="4,26 20,26 12,35" fill="none"
+          stroke={ORANGE} strokeWidth="2" strokeLinejoin="round" opacity="0.62"/>
+        <line x1="4" y1="10" x2="20" y2="10" stroke={ORANGE} strokeWidth="1.5" opacity="0.48"/>
       </motion.svg>
 
       {/* Star — center-left top */}
       <motion.svg {...float(-10, 8, 0.5, 5)} {...sway(-7, 7, 0.5, 5)}
-        className="absolute top-[12%] left-[24%]"
-        width="42" height="42" viewBox="0 0 50 50">
+        className="absolute top-[11%] left-[26%]"
+        width="40" height="40" viewBox="0 0 50 50">
         <polygon points="25,4 30,18 45,18 33,28 37,43 25,34 13,43 17,28 5,18 20,18"
-          fill="none" stroke={PINK} strokeWidth="2" strokeLinejoin="round" opacity="0.63"/>
+          fill="none" stroke={PINK} strokeWidth="2" strokeLinejoin="round" opacity="0.62"/>
       </motion.svg>
 
-      {/* Pink dot — beside star */}
+      {/* Pink dot beside star */}
       <motion.div {...float(-4, 5, 0.9, 3.5)}
-        className="absolute top-[19%] left-[33%] w-3 h-3 rounded-full"
-        style={{ background: PINK, opacity: 0.58 }}/>
+        className="absolute top-[19%] left-[35%] w-3 h-3 rounded-full"
+        style={{ background: PINK, opacity: 0.55 }}/>
 
-      {/* Magnifying glass — center-right top */}
+      {/* Magnifying glass — right of center, top */}
       <motion.svg {...float(-8, 9, 1.3, 5.5)} {...sway(-8, 8, 1.3, 5.5)}
-        className="absolute top-[5%] left-[43%]"
-        width="44" height="44" viewBox="0 0 44 44">
-        <circle cx="18" cy="18" r="13" fill="none" stroke={PINK} strokeWidth="2" opacity="0.63"/>
-        <line x1="28" y1="28" x2="42" y2="42" stroke={PINK} strokeWidth="2.5"
-          strokeLinecap="round" opacity="0.63"/>
+        className="absolute top-[5%] left-[45%]"
+        width="42" height="42" viewBox="0 0 42 42">
+        <circle cx="17" cy="17" r="12" fill="none" stroke={PINK} strokeWidth="2" opacity="0.62"/>
+        <line x1="26" y1="26" x2="40" y2="40" stroke={PINK} strokeWidth="2.5"
+          strokeLinecap="round" opacity="0.62"/>
       </motion.svg>
 
-      {/* Spinning dashed ring — right end of top strip */}
+      {/* ══════════ ZONE B — top-right (above photo) ══════════ */}
+
+      {/* Spinning dashed ring — top right */}
       <motion.div
         animate={{ rotate: [0, 360] }}
         transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[9%] left-[54%] rounded-full"
-        style={{ width: 64, height: 64, border: `2px dashed ${PINK}`, opacity: 0.30 }}/>
+        className="absolute top-[5%] left-[67%] rounded-full"
+        style={{ width: 62, height: 62, border: `2px dashed ${PINK}`, opacity: 0.28 }}/>
 
-      {/* Orange dot — upper right of text zone */}
-      <motion.div {...float(-4, 6, 1.6, 3.2)}
-        className="absolute top-[26%] left-[48%] w-2.5 h-2.5 rounded-full"
-        style={{ background: ORANGE, opacity: 0.52 }}/>
+      {/* Orange dot — above photo */}
+      <motion.div {...float(-4, 6, 1.5, 3.2)}
+        className="absolute top-[14%] left-[75%] w-3 h-3 rounded-full"
+        style={{ background: ORANGE, opacity: 0.48 }}/>
 
-      {/* ═════ GAP STRIP (≈ left 53–61%, any height) ═════ */}
+      {/* Small plain circle — top right */}
+      <motion.svg {...float(-6, 7, 0.7, 4.8)}
+        className="absolute top-[8%] left-[83%]"
+        width="34" height="34" viewBox="0 0 34 34">
+        <circle cx="17" cy="17" r="14" fill="none" stroke={ORANGE} strokeWidth="1.8" opacity="0.42"/>
+      </motion.svg>
+
+      {/* ══════════ ZONE C — gap strip (between text & photo) ══════════ */}
 
       {/* Orange outline circle */}
       <motion.svg {...float(-7, 8, 1.7, 5.0)}
-        className="absolute top-[38%] left-[54%]"
-        width="40" height="40" viewBox="0 0 40 40">
-        <circle cx="20" cy="20" r="17" fill="none" stroke={ORANGE} strokeWidth="2" opacity="0.5"/>
+        className="absolute top-[36%] left-[54%]"
+        width="38" height="38" viewBox="0 0 38 38">
+        <circle cx="19" cy="19" r="16" fill="none" stroke={ORANGE} strokeWidth="2" opacity="0.48"/>
       </motion.svg>
 
       {/* Lightning bolt */}
       <motion.svg {...float(-9, 7, 0.4, 4.2)} {...sway(-5, 5, 0.4, 4.2)}
-        className="absolute top-[56%] left-[55%]"
-        width="26" height="40" viewBox="0 0 26 40">
-        <path d="M16 2L4 20H13L10 38L24 16H15L16 2Z"
+        className="absolute top-[57%] left-[54%]"
+        width="24" height="38" viewBox="0 0 24 38">
+        <path d="M15 2L3 19H12L9 36L23 15H14L15 2Z"
           fill="none" stroke={ORANGE} strokeWidth="2"
-          strokeLinejoin="round" strokeLinecap="round" opacity="0.58"/>
+          strokeLinejoin="round" strokeLinecap="round" opacity="0.55"/>
       </motion.svg>
 
-      {/* ═══════ BOTTOM STRIP — spread 4% → 57% ═══════ */}
+      {/* ══════════ ZONE D — bottom-left strip ══════════ */}
 
-      {/* Glasses — left */}
+      {/* Glasses */}
       <motion.svg {...float(-9, 8, 1, 4.8)}
-        className="absolute top-[80%] left-[4%]"
-        width="68" height="32" viewBox="0 0 68 32">
-        <circle cx="16" cy="16" r="13" fill="none" stroke={PINK} strokeWidth="2" opacity="0.6"/>
-        <circle cx="52" cy="16" r="13" fill="none" stroke={PINK} strokeWidth="2" opacity="0.6"/>
-        <line x1="29" y1="16" x2="39" y2="16" stroke={PINK} strokeWidth="2" opacity="0.6"/>
-        <line x1="3" y1="9" x2="0" y2="5" stroke={PINK} strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
-        <line x1="65" y1="9" x2="68" y2="5" stroke={PINK} strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+        className="absolute top-[80%] left-[3%]"
+        width="66" height="30" viewBox="0 0 66 30">
+        <circle cx="15" cy="15" r="12" fill="none" stroke={PINK} strokeWidth="2" opacity="0.58"/>
+        <circle cx="51" cy="15" r="12" fill="none" stroke={PINK} strokeWidth="2" opacity="0.58"/>
+        <line x1="27" y1="15" x2="39" y2="15" stroke={PINK} strokeWidth="2" opacity="0.58"/>
+        <line x1="3" y1="8" x2="0" y2="5" stroke={PINK} strokeWidth="2" strokeLinecap="round" opacity="0.58"/>
+        <line x1="63" y1="8" x2="66" y2="5" stroke={PINK} strokeWidth="2" strokeLinecap="round" opacity="0.58"/>
       </motion.svg>
 
-      {/* Scatter dot A — left-center bottom */}
-      <motion.div {...float(-5, 7, 2.4, 3.2)}
-        className="absolute top-[77%] left-[20%] w-3.5 h-3.5 rounded-full"
-        style={{ background: ORANGE, opacity: 0.48 }}/>
+      {/* Orange dot — bottom */}
+      <motion.div {...float(-5, 7, 2.2, 3.2)}
+        className="absolute top-[77%] left-[18%] w-3.5 h-3.5 rounded-full"
+        style={{ background: ORANGE, opacity: 0.46 }}/>
 
-      {/* Trending arrow — center-left bottom */}
+      {/* Trending arrow */}
       <motion.svg {...float(-7, 8, 1.9, 4.6)}
-        className="absolute top-[86%] left-[26%]"
-        width="52" height="34" viewBox="0 0 52 34">
-        <polyline points="2,30 16,16 28,22 50,4"
+        className="absolute top-[87%] left-[24%]"
+        width="50" height="32" viewBox="0 0 50 32">
+        <polyline points="2,28 14,14 26,20 48,4"
           fill="none" stroke={PINK} strokeWidth="2"
-          strokeLinecap="round" strokeLinejoin="round" opacity="0.58"/>
-        <polyline points="40,2 50,4 48,14"
+          strokeLinecap="round" strokeLinejoin="round" opacity="0.56"/>
+        <polyline points="38,2 48,4 46,13"
           fill="none" stroke={PINK} strokeWidth="2"
-          strokeLinecap="round" strokeLinejoin="round" opacity="0.58"/>
+          strokeLinecap="round" strokeLinejoin="round" opacity="0.56"/>
       </motion.svg>
 
-      {/* Scatter dot B — center bottom */}
-      <motion.div {...float(5, -5, 2.8, 2.8)}
-        className="absolute top-[82%] left-[36%] w-2 h-2 rounded-full"
-        style={{ background: PINK, opacity: 0.45 }}/>
-
-      {/* Wavy trend line — center-right bottom */}
+      {/* Wavy gradient line */}
       <motion.svg
-        animate={{ x: [0, 8, 0], opacity: [0.48, 0.68, 0.48] }}
+        animate={{ x: [0, 8, 0], opacity: [0.45, 0.65, 0.45] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="absolute top-[78%] left-[38%]"
-        width="95" height="28" viewBox="0 0 95 28">
-        <path d="M0 20 Q14 4 28 16 Q42 26 56 13 Q70 2 84 14 Q90 17 95 12"
+        className="absolute top-[79%] left-[36%]"
+        width="90" height="26" viewBox="0 0 90 26">
+        <path d="M0 18 Q12 4 24 14 Q38 24 52 12 Q66 2 80 13 Q86 16 90 11"
           stroke="url(#wG)" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
         <defs>
           <linearGradient id="wG" x1="0" y1="0" x2="1" y2="0">
@@ -148,30 +161,42 @@ export function FloatingShapes() {
         </defs>
       </motion.svg>
 
-      {/* Mini bar chart — right-center bottom */}
+      {/* Mini bar chart */}
       <motion.svg {...float(-8, 7, 1.1, 4.4)}
-        className="absolute top-[83%] left-[48%]"
-        width="38" height="32" viewBox="0 0 38 32">
-        <rect x="0"  y="18" width="7" height="14" rx="2" fill={PINK} opacity="0.42"/>
-        <rect x="10" y="9"  width="7" height="23" rx="2" fill={ORANGE} opacity="0.42"/>
-        <rect x="20" y="13" width="7" height="19" rx="2" fill={PINK} opacity="0.38"/>
-        <rect x="30" y="4"  width="7" height="28" rx="2" fill={ORANGE} opacity="0.38"/>
+        className="absolute top-[84%] left-[48%]"
+        width="36" height="30" viewBox="0 0 36 30">
+        <rect x="0"  y="16" width="6" height="14" rx="2" fill={PINK}   opacity="0.40"/>
+        <rect x="9"  y="8"  width="6" height="22" rx="2" fill={ORANGE} opacity="0.40"/>
+        <rect x="18" y="12" width="6" height="18" rx="2" fill={PINK}   opacity="0.36"/>
+        <rect x="27" y="4"  width="6" height="26" rx="2" fill={ORANGE} opacity="0.36"/>
       </motion.svg>
 
-      {/* Data point circle — far right of bottom strip */}
+      {/* Pink dot bottom-center */}
+      <motion.div {...float(5, -5, 2.8, 2.8)}
+        className="absolute top-[83%] left-[40%] w-2 h-2 rounded-full"
+        style={{ background: PINK, opacity: 0.42 }}/>
+
+      {/* ══════════ ZONE E — bottom-right (below photo) ══════════ */}
+
+      {/* Data point circle */}
       <motion.svg {...float(-6, 7, 0.8, 3.8)}
-        className="absolute top-[89%] left-[56%]"
-        width="32" height="32" viewBox="0 0 32 32">
-        <circle cx="16" cy="16" r="12" fill="none" stroke={PINK} strokeWidth="2" opacity="0.6"/>
-        <circle cx="16" cy="16" r="3" fill={PINK} opacity="0.5"/>
+        className="absolute top-[88%] left-[64%]"
+        width="30" height="30" viewBox="0 0 30 30">
+        <circle cx="15" cy="15" r="11" fill="none" stroke={PINK} strokeWidth="2" opacity="0.58"/>
+        <circle cx="15" cy="15" r="3" fill={PINK} opacity="0.48"/>
       </motion.svg>
 
-      {/* Large faint circle — bottom-left corner decorative */}
+      {/* Small orange dot — bottom right */}
+      <motion.div {...float(-4, 5, 1.6, 3)}
+        className="absolute top-[82%] left-[74%] w-2.5 h-2.5 rounded-full"
+        style={{ background: ORANGE, opacity: 0.44 }}/>
+
+      {/* Large faint circle — bottom-left corner */}
       <motion.div
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         className="absolute bottom-[-6%] left-[-6%] w-56 h-56 rounded-full"
-        style={{ border: `2px solid ${PINK}`, opacity: 0.12 }}/>
+        style={{ border: `2px solid ${PINK}`, opacity: 0.11 }}/>
 
     </div>
   );

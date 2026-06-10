@@ -2,6 +2,21 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import photoUrl from "@assets/WhatsApp_Image_2026-05-27_at_22.26.36_1779948465791.jpeg";
 
+const highlights = [
+  {
+    label: "Startup Finalist",
+    desc: "Pitched my own startup idea and made it to the finalist stage",
+  },
+  {
+    label: "NGO Impact Work",
+    desc: "Helped Mozambikes turn 15+ years of scattered data into clear insights",
+  },
+  {
+    label: "Analytics Writer",
+    desc: "Writing and publishing data analytics content on Medium for fun",
+  },
+];
+
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -45,38 +60,49 @@ export function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
           >
-            {/* Heading with gradient underline accent */}
-            <div className="relative mb-8">
+            <div className="relative mb-7">
               <h2 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A]">
                 A bit about{" "}
-                <span className="relative inline-block">
-                  <span className="text-gradient-accent">myself.</span>
-                </span>
+                <span className="text-gradient-accent">myself.</span>
               </h2>
-              {/* decorative gradient bar under heading */}
               <div
                 className="mt-3 h-1 w-16 rounded-full"
                 style={{ background: "linear-gradient(90deg, #E8457A, #FF6B35)" }}
               />
             </div>
 
-            <div className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.8] space-y-5">
-              <p>
-                Hi, I'm Krithika, an engineering graduate who loves breaking complex things into simple ideas and turning them into storytelling and yapping about my insights for hours. I analyse how users think, behave, and interact and dig into insights beyond just surface level observations. I also write and publish analytics related content for fun.
-              </p>
-              <p>
-                Over the past year I've worked on real world projects and with NGOs, helping teams make better decisions for their organizations. I've also pitched my own startup idea and made it to the finalist stage, honestly one of my proudest achievements so far.
-              </p>
+            {/* Short intro */}
+            <p className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.8] mb-8">
+              I'm Krithika — an engineering graduate who loves breaking complex things into
+              simple ideas. I dig into how users think and behave, then turn those findings
+              into stories that actually stick.
+            </p>
+
+            {/* 3 Highlights */}
+            <div className="w-full grid grid-cols-1 gap-4 mb-8">
+              {highlights.map((h, i) => (
+                <motion.div
+                  key={h.label}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                  transition={{ delay: 0.35 + i * 0.12, type: "spring", stiffness: 260, damping: 22 }}
+                  className="flex items-start gap-4 bg-white rounded-xl px-5 py-4 border border-[#F0E8E0]"
+                >
+                  <div
+                    className="mt-1 w-2.5 h-2.5 rounded-full shrink-0"
+                    style={{ background: "linear-gradient(135deg, #E8457A, #FF6B35)" }}
+                  />
+                  <div>
+                    <p className="font-bold text-[#1A1A1A] text-sm mb-0.5">{h.label}</p>
+                    <p className="text-[#6B6B6B] text-sm leading-[1.6]">{h.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
-            {/* Subtle stat pills */}
-            <div className="flex flex-wrap gap-3 mt-8">
-              {[
-                "Real-world projects",
-                "NGO impact work",
-                "Startup finalist",
-                "Analytics writer",
-              ].map((tag) => (
+            {/* Tags */}
+            <div className="flex flex-wrap gap-3">
+              {["Real-world projects", "NGO impact work", "Startup finalist", "Analytics writer"].map((tag) => (
                 <span
                   key={tag}
                   className="text-xs font-bold px-4 py-2 rounded-full"

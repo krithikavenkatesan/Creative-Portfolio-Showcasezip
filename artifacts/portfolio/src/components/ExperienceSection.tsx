@@ -1,26 +1,42 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
+// Bold any metric-style tokens: numbers with +, %, K, M suffixes or standalone big numbers
+function BulletText({ text }: { text: string }) {
+  const parts = text.split(/(\d+[\+\%KM]?(?:\s*years?)?(?:\s*\+)?|\d{2,})/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        /^\d/.test(part) ? (
+          <strong key={i} className="font-bold text-[#1A1A1A]">{part}</strong>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
+
 const experiences = [
   {
     date: "SEP 2025 – PRESENT",
-    role: "Power BI & Reporting Analyst",
-    company: "Mozambikes (Volunteer)",
+    role: "Data Analyst",
+    company: "Mozambikes · Volunteer",
     bullets: [
-      "Consolidated 15+ years of financial, donation, and impact data from 6+ Excel and CSV files into one Power BI system, improving data accuracy and simplifying performance reporting",
-      "Built 4+ automated trackers with pivot tables to monitor collection targets and report metrics for weekly reviews",
-      "Designed dashboards for external stakeholders to support fundraising and training discussions, with 5+ dashboards covering 12+ KPIs",
-      "Created user guides and delivered hands-on training to enable independent progress tracking across the team",
+      "Consolidated 15+ years of financial, donation, revenue, and impact data from 6+ Excel and CSV files into one Power BI system, improving data accuracy and simplifying performance reporting",
+      "Built 4+ automated trackers with pivot tables to monitor collections, targets, and impact metrics for weekly reviews",
+      "Performed data modeling and transformation to build 5+ dashboards with 12+ KPIs covering growth trends, employee performance, funding activity, and impact outcomes",
+      "Designed dashboards for external stakeholders to support fundraising and donor discussions; created user guides and delivered hands-on training",
     ],
   },
   {
     date: "AUG 2025 – SEP 2025",
-    role: "Data Analyst Intern",
+    role: "BI & Reporting Analyst Intern",
     company: "Innovative Technology Strategies",
     bullets: [
-      "Designed pre and post program surveys with outcome-based KPIs, improving response and completion rates",
-      "Mapped participant journeys from onboarding to completion using engagement metrics",
-      "Reduced transcript processing time by 40% using Python to extract and clean YouTube transcripts, enabling faster program impact reporting",
+      "Collaborated with cross-functional teams to design pre- and post-program surveys with outcome-based KPIs, improving response and completion rates",
+      "Supported program operations by collecting participant demographic data, analysing engagement metrics, and mapping participant journeys from onboarding to completion",
+      "Reduced transcript processing time by 40% by extracting YouTube transcripts and using Python to clean and preprocess raw text, enabling downstream analysis for program impact reporting",
     ],
   },
 ];
@@ -84,7 +100,7 @@ export function ExperienceSection() {
                     {exp.bullets.map((bullet, bIndex) => (
                       <li key={bIndex} className="flex items-start text-[#1A1A1A] text-[0.95rem] leading-[1.7]">
                         <span className="font-bold mr-3 mt-[2px] shrink-0 text-gradient-accent">→</span>
-                        <span>{bullet}</span>
+                        <span><BulletText text={bullet} /></span>
                       </li>
                     ))}
                   </ul>
