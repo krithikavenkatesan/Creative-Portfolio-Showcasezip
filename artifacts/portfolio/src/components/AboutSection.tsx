@@ -3,7 +3,17 @@ import { useRef } from "react";
 import photoUrl from "@assets/WhatsApp_Image_2026-05-27_at_22.26.36_1779948465791.jpeg";
 
 const H = ({ children }: { children: string }) => (
-  <span style={{ color: "#E8457A", fontWeight: 700 }}>{children}</span>
+  <span
+    style={{
+      background: "linear-gradient(90deg, #E8457A, #FF6B35)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      backgroundClip: "text",
+      fontWeight: 700,
+    }}
+  >
+    {children}
+  </span>
 );
 
 export function AboutSection() {
