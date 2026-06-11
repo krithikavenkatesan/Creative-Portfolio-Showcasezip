@@ -35,14 +35,17 @@ export function AboutSection() {
       onMouseLeave={() => setMouse(null)}
       className="py-14 md:py-20 bg-[#FFF8F0] overflow-hidden relative"
     >
-      {/* Dot grid — left half only */}
+      {/* Line grid — left side, fades right */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(circle, rgba(232,69,122,0.14) 1.2px, transparent 1.2px)`,
+          backgroundImage: `
+            linear-gradient(rgba(232,69,122,0.22) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,107,53,0.18) 1px, transparent 1px)
+          `,
           backgroundSize: "32px 32px",
-          maskImage: "linear-gradient(to right, black 0%, black 42%, transparent 58%)",
-          WebkitMaskImage: "linear-gradient(to right, black 0%, black 42%, transparent 58%)",
+          maskImage: "linear-gradient(to right, black 0%, black 28%, transparent 52%)",
+          WebkitMaskImage: "linear-gradient(to right, black 0%, black 28%, transparent 52%)",
         }}
       />
 
@@ -52,8 +55,8 @@ export function AboutSection() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background: `radial-gradient(300px circle at ${mouse.x}px ${mouse.y}px,
-              rgba(255,107,53,0.14) 0%,
-              rgba(232,69,122,0.08) 40%,
+              rgba(255,107,53,0.18) 0%,
+              rgba(232,69,122,0.10) 40%,
               transparent 70%)`,
             maskImage: "linear-gradient(to right, black 0%, black 44%, transparent 62%)",
             WebkitMaskImage: "linear-gradient(to right, black 0%, black 44%, transparent 62%)",
