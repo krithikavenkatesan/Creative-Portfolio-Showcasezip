@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { FloatingShapes } from "./FloatingShapes";
 import resumeUrl from "@assets/Krithika_Resume__._1781085563115.pdf";
 import photoUrl from "@assets/WhatsApp_Image_2026-05-27_at_20.38.22_1779947524537.jpeg";
 
@@ -18,10 +17,27 @@ export function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      <FloatingShapes />
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+      style={{
+        backgroundImage: `
+          radial-gradient(circle, rgba(232,69,122,0.18) 1px, transparent 1px)
+        `,
+        backgroundSize: "32px 32px",
+        backgroundPosition: "0 0",
+      }}
+    >
+      {/* Fade-out mask so grid is visible on left, fades toward center-right */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(to right, transparent 0%, transparent 40%, #FFF8F0 72%)",
+          zIndex: 1,
+        }}
+      />
 
-      <div className="max-w-6xl mx-auto w-full px-6 md:px-10">
+      <div className="max-w-6xl mx-auto w-full px-6 md:px-10" style={{ zIndex: 2, position: "relative" }}>
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 md:gap-10">
 
           {/* LEFT — text */}
@@ -43,9 +59,9 @@ export function HeroSection() {
                 Data Analyst
               </h1>
               <h2
-                className="text-3xl md:text-4xl font-extrabold leading-[1.2] tracking-tight mt-2 whitespace-nowrap text-gradient-accent"
+                className="text-2xl md:text-3xl font-extrabold leading-[1.3] tracking-tight mt-2 text-gradient-accent"
               >
-                Storytelling &amp; Product Thinking.
+                I solve business problems by uncovering<br className="hidden md:block" /> opportunities that drive measurable impact.
               </h2>
             </motion.div>
 
