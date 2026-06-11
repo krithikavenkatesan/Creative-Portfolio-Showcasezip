@@ -16,15 +16,6 @@ const H = ({ children }: { children: string }) => (
   </span>
 );
 
-const BADGES = [
-  { label: "Power BI",   top: "6%",   left: "-18%",  delay: 0 },
-  { label: "Python",     top: "22%",  left: "-22%",  delay: 0.3 },
-  { label: "SQL",        top: "70%",  left: "-16%",  delay: 0.6 },
-  { label: "Excel",      top: "85%",  left: "2%",    delay: 0.9 },
-  { label: "Tableau",    top: "82%",  left: "68%",   delay: 1.1 },
-  { label: "Storytelling", top: "4%", left: "55%",   delay: 0.5 },
-];
-
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -34,44 +25,91 @@ export function AboutSection() {
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
 
-          {/* LEFT — Photo + floating badges */}
+          {/* LEFT — Photo with decorative background */}
           <motion.div
             className="w-full md:w-[42%] flex justify-center relative"
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
           >
-            {/* Floating skill badges */}
-            {BADGES.map((b) => (
-              <motion.span
-                key={b.label}
-                className="absolute z-10 text-[11px] font-bold px-3 py-1.5 rounded-full whitespace-nowrap pointer-events-none hidden md:flex"
-                style={{
-                  top: b.top,
-                  left: b.left,
-                  background: "linear-gradient(90deg, #E8457A0f, #FF6B350f)",
-                  border: "1px solid #E8457A30",
-                  color: "#E8457A",
-                  backdropFilter: "blur(4px)",
-                }}
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={isInView
-                  ? {
-                      opacity: 1,
-                      scale: 1,
-                      y: ["0px", "-8px", "0px"],
-                    }
-                  : { opacity: 0, scale: 0.7 }}
-                transition={{
-                  opacity: { delay: b.delay + 0.4, duration: 0.4 },
-                  scale:   { delay: b.delay + 0.4, duration: 0.4 },
-                  y: { delay: b.delay + 0.9, duration: 3.5 + b.delay * 0.4, repeat: Infinity, ease: "easeInOut" },
-                }}
-              >
-                {b.label}
-              </motion.span>
-            ))}
+            {/* Dot grid behind photo */}
+            <div
+              className="absolute inset-0 pointer-events-none hidden md:block"
+              style={{
+                backgroundImage: `radial-gradient(circle, rgba(232,69,122,0.15) 1.2px, transparent 1.2px)`,
+                backgroundSize: "28px 28px",
+                maskImage: "radial-gradient(ellipse 80% 85% at 40% 50%, black 30%, transparent 80%)",
+                WebkitMaskImage: "radial-gradient(ellipse 80% 85% at 40% 50%, black 30%, transparent 80%)",
+              }}
+            />
 
+            {/* Floating decorative circles */}
+            <motion.div
+              className="absolute pointer-events-none hidden md:block"
+              style={{ top: "8%", left: "2%", width: 56, height: 56 }}
+              animate={isInView ? { y: ["0px", "-10px", "0px"] } : {}}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0 }}
+            >
+              <svg width="56" height="56" viewBox="0 0 56 56">
+                <circle cx="28" cy="28" r="24" fill="none" stroke="#E8457A" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.35" />
+              </svg>
+            </motion.div>
+
+            <motion.div
+              className="absolute pointer-events-none hidden md:block"
+              style={{ bottom: "10%", left: "4%", width: 34, height: 34 }}
+              animate={isInView ? { y: ["0px", "8px", "0px"] } : {}}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+            >
+              <svg width="34" height="34" viewBox="0 0 34 34">
+                <circle cx="17" cy="17" r="14" fill="none" stroke="#FF6B35" strokeWidth="1.5" opacity="0.3" />
+                <circle cx="17" cy="17" r="5" fill="#FF6B35" opacity="0.2" />
+              </svg>
+            </motion.div>
+
+            <motion.div
+              className="absolute pointer-events-none hidden md:block rounded-full"
+              style={{
+                top: "18%", left: "-6%",
+                width: 10, height: 10,
+                background: "linear-gradient(135deg,#E8457A,#FF6B35)",
+                opacity: 0.5,
+              }}
+              animate={isInView ? { scale: [1, 1.4, 1], opacity: [0.5, 0.8, 0.5] } : {}}
+              transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+            />
+
+            <motion.div
+              className="absolute pointer-events-none hidden md:block rounded-full"
+              style={{
+                bottom: "22%", left: "-4%",
+                width: 7, height: 7,
+                background: "#E8457A",
+                opacity: 0.45,
+              }}
+              animate={isInView ? { scale: [1, 1.5, 1], opacity: [0.45, 0.7, 0.45] } : {}}
+              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
+            />
+
+            {/* Soft arc */}
+            <motion.div
+              className="absolute pointer-events-none hidden md:block"
+              style={{ top: "50%", left: "-10%", transform: "translateY(-50%)" }}
+              animate={isInView ? { rotate: [0, 8, 0] } : {}}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <svg width="48" height="96" viewBox="0 0 48 96">
+                <path d="M44 4 Q4 48 44 92" fill="none" stroke="url(#arcG)" strokeWidth="1.5" strokeLinecap="round" opacity="0.35" />
+                <defs>
+                  <linearGradient id="arcG" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#E8457A" />
+                    <stop offset="100%" stopColor="#FF6B35" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </motion.div>
+
+            {/* Photo */}
             <div className="relative w-72 h-[400px] md:w-[340px] md:h-[460px]">
               <div
                 className="absolute inset-0 transform rotate-6 translate-x-4 translate-y-4"

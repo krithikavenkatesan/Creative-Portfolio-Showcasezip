@@ -25,15 +25,6 @@ function BulletText({ text }: { text: string }) {
   );
 }
 
-const SKILLS = [
-  { label: "Excel & Sheets", pct: 95 },
-  { label: "SQL",            pct: 85 },
-  { label: "Power BI",       pct: 88 },
-  { label: "Python",         pct: 75 },
-  { label: "Tableau",        pct: 70 },
-  { label: "Storytelling",   pct: 92 },
-];
-
 const experiences = [
   {
     date: "SEP 2025 – PRESENT",
@@ -72,7 +63,83 @@ export function ExperienceSection() {
   };
 
   return (
-    <section id="experience" className="py-14 md:py-20 bg-[#FFF8F0]">
+    <section id="experience" className="py-14 md:py-20 bg-[#FFF8F0] relative overflow-hidden">
+
+      {/* Decorative right-side dot grid + glow */}
+      <div className="absolute top-0 right-0 bottom-0 w-[34%] pointer-events-none hidden lg:block">
+        {/* dot grid */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle, rgba(232,69,122,0.13) 1.2px, transparent 1.2px)`,
+            backgroundSize: "28px 28px",
+            maskImage: "radial-gradient(ellipse 80% 70% at 60% 45%, black 20%, transparent 75%)",
+            WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 60% 45%, black 20%, transparent 75%)",
+          }}
+        />
+        {/* soft glow blob */}
+        <div
+          className="absolute"
+          style={{
+            top: "20%", left: "10%",
+            width: 260, height: 260,
+            background: "radial-gradient(circle, rgba(232,69,122,0.09) 0%, transparent 70%)",
+            borderRadius: "50%",
+          }}
+        />
+        {/* floating circles */}
+        <motion.svg
+          className="absolute"
+          style={{ top: "15%", right: "18%" }}
+          width="64" height="64" viewBox="0 0 64 64"
+          animate={isInView ? { y: ["0px", "-12px", "0px"] } : {}}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <circle cx="32" cy="32" r="28" fill="none" stroke="#E8457A" strokeWidth="1.2" strokeDasharray="5 4" opacity="0.28" />
+        </motion.svg>
+
+        <motion.svg
+          className="absolute"
+          style={{ bottom: "22%", right: "28%" }}
+          width="36" height="36" viewBox="0 0 36 36"
+          animate={isInView ? { y: ["0px", "9px", "0px"] } : {}}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        >
+          <circle cx="18" cy="18" r="15" fill="none" stroke="#FF6B35" strokeWidth="1.2" opacity="0.25" />
+          <circle cx="18" cy="18" r="5" fill="#FF6B35" opacity="0.15" />
+        </motion.svg>
+
+        <motion.div
+          className="absolute rounded-full"
+          style={{ top: "38%", right: "20%", width: 10, height: 10, background: "linear-gradient(135deg,#E8457A,#FF6B35)", opacity: 0.45 }}
+          animate={isInView ? { scale: [1, 1.5, 1], opacity: [0.45, 0.7, 0.45] } : {}}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        />
+        <motion.div
+          className="absolute rounded-full"
+          style={{ bottom: "35%", right: "14%", width: 7, height: 7, background: "#E8457A", opacity: 0.35 }}
+          animate={isInView ? { scale: [1, 1.6, 1], opacity: [0.35, 0.6, 0.35] } : {}}
+          transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
+        />
+
+        {/* Curved arc */}
+        <motion.svg
+          className="absolute"
+          style={{ top: "50%", right: "8%", transform: "translateY(-50%)" }}
+          width="48" height="110" viewBox="0 0 48 110"
+          animate={isInView ? { rotate: [0, -6, 0] } : {}}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <path d="M4 4 Q44 55 4 106" fill="none" stroke="url(#expArc)" strokeWidth="1.4" strokeLinecap="round" opacity="0.3" />
+          <defs>
+            <linearGradient id="expArc" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#E8457A" />
+              <stop offset="100%" stopColor="#FF6B35" />
+            </linearGradient>
+          </defs>
+        </motion.svg>
+      </div>
+
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <motion.div
           ref={ref}
@@ -91,98 +158,38 @@ export function ExperienceSection() {
             />
           </motion.div>
 
-          {/* Two-column: timeline left, skills panel right */}
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
-
-            {/* LEFT — Timeline */}
-            <div className="flex-1 min-w-0">
-              <div
-                className="relative ml-3 space-y-14"
-                style={{
-                  borderLeft: "2px solid transparent",
-                  borderImage: "linear-gradient(180deg, #E8457A, #FF6B35) 1",
-                }}
-              >
-                {experiences.map((exp, index) => (
-                  <motion.div key={index} variants={itemVariants} className="relative pl-10">
-                    <div
-                      className="absolute w-3 h-3 rounded-full -left-[7px] top-1.5 ring-4 ring-[#FFF8F0]"
-                      style={{ background: "linear-gradient(135deg, #E8457A, #FF6B35)" }}
-                    />
-                    <div className="flex flex-col mb-5">
-                      <span className="text-xs font-bold uppercase tracking-widest mb-2 text-gradient-accent">
-                        {exp.date}
-                      </span>
-                      <h3 className="text-2xl font-extrabold text-[#1A1A1A]">{exp.role}</h3>
-                      <span className="italic text-[#6B6B6B] mt-1 text-sm font-medium">{exp.company}</span>
-                    </div>
-                    <ul className="space-y-3">
-                      {exp.bullets.map((bullet, bIndex) => (
-                        <li key={bIndex} className="flex items-start text-[#1A1A1A] text-[0.95rem] leading-[1.7]">
-                          <span className="font-bold mr-3 mt-[2px] shrink-0 text-gradient-accent">→</span>
-                          <span><BulletText text={bullet} /></span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* RIGHT — Skills panel */}
-            <motion.div
-              variants={itemVariants}
-              className="hidden lg:flex flex-col w-64 shrink-0 sticky top-28 self-start"
+          <div className="max-w-3xl">
+            <div
+              className="relative ml-3 space-y-14"
+              style={{
+                borderLeft: "2px solid transparent",
+                borderImage: "linear-gradient(180deg, #E8457A, #FF6B35) 1",
+              }}
             >
-              <p className="text-xs font-bold uppercase tracking-widest text-[#6B6B6B] mb-6">
-                Tools & Skills
-              </p>
-              <div className="space-y-5">
-                {SKILLS.map((s, i) => (
-                  <div key={s.label}>
-                    <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-sm font-semibold text-[#1A1A1A]">{s.label}</span>
-                      <span
-                        className="text-xs font-bold"
-                        style={{
-                          background: "linear-gradient(90deg,#E8457A,#FF6B35)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundClip: "text",
-                        }}
-                      >
-                        {s.pct}%
-                      </span>
-                    </div>
-                    {/* Track */}
-                    <div className="h-1.5 rounded-full bg-[#F0E8E0] overflow-hidden">
-                      <motion.div
-                        className="h-full rounded-full"
-                        style={{ background: "linear-gradient(90deg,#E8457A,#FF6B35)" }}
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${s.pct}%` } : { width: 0 }}
-                        transition={{ duration: 1, delay: 0.5 + i * 0.12, ease: "easeOut" }}
-                      />
-                    </div>
+              {experiences.map((exp, index) => (
+                <motion.div key={index} variants={itemVariants} className="relative pl-10">
+                  <div
+                    className="absolute w-3 h-3 rounded-full -left-[7px] top-1.5 ring-4 ring-[#FFF8F0]"
+                    style={{ background: "linear-gradient(135deg, #E8457A, #FF6B35)" }}
+                  />
+                  <div className="flex flex-col mb-5">
+                    <span className="text-xs font-bold uppercase tracking-widest mb-2 text-gradient-accent">
+                      {exp.date}
+                    </span>
+                    <h3 className="text-2xl font-extrabold text-[#1A1A1A]">{exp.role}</h3>
+                    <span className="italic text-[#6B6B6B] mt-1 text-sm font-medium">{exp.company}</span>
                   </div>
-                ))}
-              </div>
-
-              {/* Faint decorative grid behind the panel */}
-              <div
-                className="absolute inset-0 -z-10 rounded-2xl pointer-events-none"
-                style={{
-                  backgroundImage: `
-                    linear-gradient(rgba(232,69,122,0.07) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(232,69,122,0.07) 1px, transparent 1px)
-                  `,
-                  backgroundSize: "24px 24px",
-                  maskImage: "radial-gradient(ellipse 100% 90% at 50% 50%, black 50%, transparent 100%)",
-                  WebkitMaskImage: "radial-gradient(ellipse 100% 90% at 50% 50%, black 50%, transparent 100%)",
-                }}
-              />
-            </motion.div>
-
+                  <ul className="space-y-3">
+                    {exp.bullets.map((bullet, bIndex) => (
+                      <li key={bIndex} className="flex items-start text-[#1A1A1A] text-[0.95rem] leading-[1.7]">
+                        <span className="font-bold mr-3 mt-[2px] shrink-0 text-gradient-accent">→</span>
+                        <span><BulletText text={bullet} /></span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
