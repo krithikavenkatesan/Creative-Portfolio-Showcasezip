@@ -109,8 +109,27 @@ export function HeroSection() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "linear-gradient(to right, transparent 38%, #FFF8F0 70%)",
+            background: "linear-gradient(to right, transparent 38%, #FFF8F0 68%)",
             zIndex: 2,
+          }}
+        />
+
+        {/* Gap grid — line grid visible in the space between text and photo */}
+        <div
+          className="absolute pointer-events-none hidden md:block"
+          style={{
+            left: "46%",
+            right: "28%",
+            top: "18%",
+            bottom: "18%",
+            backgroundImage: `
+              linear-gradient(rgba(232,69,122,0.10) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(232,69,122,0.10) 1px, transparent 1px)
+            `,
+            backgroundSize: "32px 32px",
+            maskImage: "radial-gradient(ellipse 90% 80% at 50% 50%, black 40%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse 90% 80% at 50% 50%, black 40%, transparent 100%)",
+            zIndex: 3,
           }}
         />
 
