@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function BulletText({ text }: { text: string }) {
   const parts = text.split(/(\d+[\+\%KM]?(?:\s*years?)?(?:\s*\+)?|\d{2,})/g);
@@ -50,8 +50,15 @@ const experiences = [
 ];
 
 export function ExperienceSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-100px" });
+  const [mouse, setMouse] = useState<{ x: number; y: number } | null>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    setMouse({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -63,86 +70,42 @@ export function ExperienceSection() {
   };
 
   return (
-    <section id="experience" className="py-14 md:py-20 bg-[#FFF8F0] relative overflow-hidden">
+    <section
+      id="experience"
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setMouse(null)}
+      className="py-14 md:py-20 bg-[#FFF8F0] relative overflow-hidden"
+    >
+      {/* Dot grid — right side only */}
+      <div
+        className="absolute inset-0 pointer-events-none hidden lg:block"
+        style={{
+          backgroundImage: `radial-gradient(circle, rgba(232,69,122,0.14) 1.2px, transparent 1.2px)`,
+          backgroundSize: "32px 32px",
+          maskImage: "linear-gradient(to left, black 0%, black 34%, transparent 56%)",
+          WebkitMaskImage: "linear-gradient(to left, black 0%, black 34%, transparent 56%)",
+        }}
+      />
 
-      {/* Decorative right-side dot grid + glow */}
-      <div className="absolute top-0 right-0 bottom-0 w-[34%] pointer-events-none hidden lg:block">
-        {/* dot grid */}
+      {/* Mouse spotlight — right side only */}
+      {mouse && (
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none hidden lg:block"
           style={{
-            backgroundImage: `radial-gradient(circle, rgba(232,69,122,0.13) 1.2px, transparent 1.2px)`,
-            backgroundSize: "28px 28px",
-            maskImage: "radial-gradient(ellipse 80% 70% at 60% 45%, black 20%, transparent 75%)",
-            WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 60% 45%, black 20%, transparent 75%)",
+            background: `radial-gradient(300px circle at ${mouse.x}px ${mouse.y}px,
+              rgba(255,107,53,0.14) 0%,
+              rgba(232,69,122,0.08) 40%,
+              transparent 70%)`,
+            maskImage: "linear-gradient(to left, black 0%, black 36%, transparent 58%)",
+            WebkitMaskImage: "linear-gradient(to left, black 0%, black 36%, transparent 58%)",
+            zIndex: 1,
           }}
         />
-        {/* soft glow blob */}
-        <div
-          className="absolute"
-          style={{
-            top: "20%", left: "10%",
-            width: 260, height: 260,
-            background: "radial-gradient(circle, rgba(232,69,122,0.09) 0%, transparent 70%)",
-            borderRadius: "50%",
-          }}
-        />
-        {/* floating circles */}
-        <motion.svg
-          className="absolute"
-          style={{ top: "15%", right: "18%" }}
-          width="64" height="64" viewBox="0 0 64 64"
-          animate={isInView ? { y: ["0px", "-12px", "0px"] } : {}}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <circle cx="32" cy="32" r="28" fill="none" stroke="#E8457A" strokeWidth="1.2" strokeDasharray="5 4" opacity="0.28" />
-        </motion.svg>
+      )}
 
-        <motion.svg
-          className="absolute"
-          style={{ bottom: "22%", right: "28%" }}
-          width="36" height="36" viewBox="0 0 36 36"
-          animate={isInView ? { y: ["0px", "9px", "0px"] } : {}}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        >
-          <circle cx="18" cy="18" r="15" fill="none" stroke="#FF6B35" strokeWidth="1.2" opacity="0.25" />
-          <circle cx="18" cy="18" r="5" fill="#FF6B35" opacity="0.15" />
-        </motion.svg>
-
+      <div className="max-w-6xl mx-auto px-6 md:px-10 relative" style={{ zIndex: 2 }}>
         <motion.div
-          className="absolute rounded-full"
-          style={{ top: "38%", right: "20%", width: 10, height: 10, background: "linear-gradient(135deg,#E8457A,#FF6B35)", opacity: 0.45 }}
-          animate={isInView ? { scale: [1, 1.5, 1], opacity: [0.45, 0.7, 0.45] } : {}}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        />
-        <motion.div
-          className="absolute rounded-full"
-          style={{ bottom: "35%", right: "14%", width: 7, height: 7, background: "#E8457A", opacity: 0.35 }}
-          animate={isInView ? { scale: [1, 1.6, 1], opacity: [0.35, 0.6, 0.35] } : {}}
-          transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
-        />
-
-        {/* Curved arc */}
-        <motion.svg
-          className="absolute"
-          style={{ top: "50%", right: "8%", transform: "translateY(-50%)" }}
-          width="48" height="110" viewBox="0 0 48 110"
-          animate={isInView ? { rotate: [0, -6, 0] } : {}}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <path d="M4 4 Q44 55 4 106" fill="none" stroke="url(#expArc)" strokeWidth="1.4" strokeLinecap="round" opacity="0.3" />
-          <defs>
-            <linearGradient id="expArc" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#E8457A" />
-              <stop offset="100%" stopColor="#FF6B35" />
-            </linearGradient>
-          </defs>
-        </motion.svg>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <motion.div
-          ref={ref}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
           variants={containerVariants}
