@@ -39,14 +39,14 @@ export function AboutSection() {
       <div
         className="absolute pointer-events-none"
         style={{
-          top: 0, bottom: 0, left: 0, width: "46%",
+          top: 0, bottom: 0, left: "-4%", width: "50%",
           backgroundImage: `
-            linear-gradient(rgba(232,69,122,0.13) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(232,69,122,0.13) 1px, transparent 1px)
+            linear-gradient(rgba(232,69,122,0.11) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(232,69,122,0.11) 1px, transparent 1px)
           `,
-          backgroundSize: "32px 32px",
-          maskImage: "radial-gradient(ellipse 85% 80% at 38% 50%, black 30%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 85% 80% at 38% 50%, black 30%, transparent 100%)",
+          backgroundSize: "20px 20px",
+          maskImage: "radial-gradient(ellipse 70% 65% at 35% 50%, black 0%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 65% at 35% 50%, black 0%, transparent 80%)",
         }}
       />
 
