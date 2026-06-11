@@ -16,6 +16,15 @@ const H = ({ children }: { children: string }) => (
   </span>
 );
 
+const BADGES = [
+  { label: "Power BI",   top: "6%",   left: "-18%",  delay: 0 },
+  { label: "Python",     top: "22%",  left: "-22%",  delay: 0.3 },
+  { label: "SQL",        top: "70%",  left: "-16%",  delay: 0.6 },
+  { label: "Excel",      top: "85%",  left: "2%",    delay: 0.9 },
+  { label: "Tableau",    top: "82%",  left: "68%",   delay: 1.1 },
+  { label: "Storytelling", top: "4%", left: "55%",   delay: 0.5 },
+];
+
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -25,13 +34,44 @@ export function AboutSection() {
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
 
-          {/* LEFT — Photo */}
+          {/* LEFT — Photo + floating badges */}
           <motion.div
             className="w-full md:w-[42%] flex justify-center relative"
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
           >
+            {/* Floating skill badges */}
+            {BADGES.map((b) => (
+              <motion.span
+                key={b.label}
+                className="absolute z-10 text-[11px] font-bold px-3 py-1.5 rounded-full whitespace-nowrap pointer-events-none hidden md:flex"
+                style={{
+                  top: b.top,
+                  left: b.left,
+                  background: "linear-gradient(90deg, #E8457A0f, #FF6B350f)",
+                  border: "1px solid #E8457A30",
+                  color: "#E8457A",
+                  backdropFilter: "blur(4px)",
+                }}
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={isInView
+                  ? {
+                      opacity: 1,
+                      scale: 1,
+                      y: ["0px", "-8px", "0px"],
+                    }
+                  : { opacity: 0, scale: 0.7 }}
+                transition={{
+                  opacity: { delay: b.delay + 0.4, duration: 0.4 },
+                  scale:   { delay: b.delay + 0.4, duration: 0.4 },
+                  y: { delay: b.delay + 0.9, duration: 3.5 + b.delay * 0.4, repeat: Infinity, ease: "easeInOut" },
+                }}
+              >
+                {b.label}
+              </motion.span>
+            ))}
+
             <div className="relative w-72 h-[400px] md:w-[340px] md:h-[460px]">
               <div
                 className="absolute inset-0 transform rotate-6 translate-x-4 translate-y-4"
@@ -70,25 +110,21 @@ export function AboutSection() {
               />
             </div>
 
-            {/* Para 1 */}
             <p className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.85] mb-5">
               Hi, I'm Krithika, an engineering graduate who loves{" "}
               <H>breaking complex things into simple ideas</H> and turning them into{" "}
               <H>storytelling</H> and yapping about my insights for hours. I analyse how users think, behave, and interact and dig into insights beyond just surface level observations.
             </p>
 
-            {/* Para 2 */}
             <p className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.85] mb-5">
               I also <H>write and publish analytics related content</H> for fun. Over the past year I've worked on <H>real world projects</H> and with NGOs, helping teams make better decisions for their organizations.
             </p>
 
-            {/* Para 3 */}
             <p className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.85] mb-8">
               I've also pitched my own <H>startup idea</H> and made it to the{" "}
               <H>finalist stage</H>, honestly one of my proudest achievements so far.
             </p>
 
-            {/* Tags */}
             <div className="flex flex-wrap gap-3">
               {["Real-world projects", "NGO impact work", "Startup finalist", "Analytics writer"].map((tag) => (
                 <span
