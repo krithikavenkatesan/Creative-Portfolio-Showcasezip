@@ -44,9 +44,9 @@ export function AboutSection() {
             linear-gradient(rgba(232,69,122,0.11) 1px, transparent 1px),
             linear-gradient(90deg, rgba(232,69,122,0.11) 1px, transparent 1px)
           `,
-          backgroundSize: "20px 20px",
-          maskImage: "radial-gradient(ellipse 70% 65% at 35% 50%, black 0%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse 70% 65% at 35% 50%, black 0%, transparent 80%)",
+          backgroundSize: "32px 32px",
+          maskImage: "radial-gradient(ellipse 55% 50% at 35% 50%, black 0%, transparent 65%)",
+          WebkitMaskImage: "radial-gradient(ellipse 55% 50% at 35% 50%, black 0%, transparent 65%)",
         }}
       />
 
