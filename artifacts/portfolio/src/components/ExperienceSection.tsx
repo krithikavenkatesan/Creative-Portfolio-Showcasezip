@@ -77,17 +77,18 @@ export function ExperienceSection() {
       onMouseLeave={() => setMouse(null)}
       className="py-14 md:py-20 bg-[#FFF8F0] relative overflow-hidden"
     >
-      {/* Line grid — right side, fades left */}
+      {/* Line grid — right side, radial fade from all edges */}
       <div
-        className="absolute inset-0 pointer-events-none hidden lg:block"
+        className="absolute pointer-events-none hidden lg:block"
         style={{
+          top: 0, bottom: 0, right: 0, width: "46%",
           backgroundImage: `
-            linear-gradient(rgba(232,69,122,0.22) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,107,53,0.18) 1px, transparent 1px)
+            linear-gradient(rgba(232,69,122,0.13) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(232,69,122,0.13) 1px, transparent 1px)
           `,
           backgroundSize: "32px 32px",
-          maskImage: "linear-gradient(to left, black 0%, black 28%, transparent 52%)",
-          WebkitMaskImage: "linear-gradient(to left, black 0%, black 28%, transparent 52%)",
+          maskImage: "radial-gradient(ellipse 85% 80% at 62% 50%, black 30%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 85% 80% at 62% 50%, black 30%, transparent 100%)",
         }}
       />
 
